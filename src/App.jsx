@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Header from './components/Header.jsx';
 import SelectInput from './components/SelectInput.jsx';
 import PrimaryButton from './components/PrimaryButton.jsx';
+import DataTable from './components/DataTable.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class App extends Component {
         <SelectInput />
         <SelectInput />
         <PrimaryButton />
+        <DataTable />
       </Fragment>
     );
   }
