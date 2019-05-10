@@ -11,9 +11,9 @@ function Header() {
       borderRadius={3}
     >
       <Pane flex={1} alignItems="center" display="flex">
-        <Avatar name="Crime App" size={40} marginRight={12} />
+        <Avatar name="Crime Reports" size={40} marginRight={12} />
         <Heading size={600} color="white">
-          Crime Database
+          Open Data about Crime and Policing in England
         </Heading>
       </Pane>
     </Pane>
