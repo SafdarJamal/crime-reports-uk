@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Pane,
-  Button,
-  Heading,
-  majorScale,
-  BackButton,
-  Avatar
-} from 'evergreen-ui';
+import { Pane, Heading, Avatar } from 'evergreen-ui';
 
 function Header() {
   return (
@@ -23,19 +16,6 @@ function Header() {
           Crime Database
         </Heading>
       </Pane>
-      {/* <Pane>
-          Below you can see the marginRight property on a Button.
-          <Button marginRight={16} height={majorScale(5)}>
-            Button
-          </Button>
-          <Button marginRight={16} appearance="primary" intent="success">
-            Primary Button
-          </Button>
-          <Button appearance="primary" iconBefore="search">
-            Primary Button
-          </Button>
-          <BackButton marginLeft={16}>Back</BackButton>
-        </Pane> */}
     </Pane>
   );
 }
