@@ -1,7 +1,7 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from 'react';
+import { Button } from 'evergreen-ui';
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
@@ -10,10 +10,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Crime Search App</h1>
-        </header>
+      <div>
+        <Button>Hello World</Button>
       </div>
     );
   }
