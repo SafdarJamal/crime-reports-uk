@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Header from './components/Header.jsx';
+import SelectInput from './components/SelectInput.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -12,6 +13,8 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
+        <SelectInput />
+        <SelectInput />
       </Fragment>
     );
   }
