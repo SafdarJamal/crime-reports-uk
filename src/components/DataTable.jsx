@@ -52,13 +52,13 @@ function DataTable() {
     // { name: 'a', lastActivity: 'none', ltv: '1454' }
   ];
   return (
-    <Table marginTop={25}>
+    <Table elevation={1} marginTop={25} marginBottom={25}>
       <Table.Head>
         <Table.SearchHeaderCell />
         <Table.TextHeaderCell>Last Activity</Table.TextHeaderCell>
         <Table.TextHeaderCell>ltv</Table.TextHeaderCell>
       </Table.Head>
-      <Table.Body height={500}>
+      <Table.Body height={475}>
         {profiles.map(profile => (
           <Table.Row
             key={profile.id}

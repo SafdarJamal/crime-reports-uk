@@ -4,9 +4,10 @@ import { Pane, Heading, Avatar } from 'evergreen-ui';
 function Header() {
   return (
     <Pane
+      elevation={1}
       display="flex"
       padding={16}
-      marginTop={12}
+      marginTop={10}
       background="overlay"
       borderRadius={3}
     >
