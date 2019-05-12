@@ -16,8 +16,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    crimeCategories();
+    crimeCategories().then(value => {
+      console.log(value);
+    });
   }
+
   render() {
     return (
       <Fragment>
@@ -26,7 +29,6 @@ class App extends Component {
           elevation={1}
           marginTop={25}
           height={240}
-          // height="26vh"
           width="100%"
           // display="flex"
           paddingRight={25}
