@@ -17,6 +17,8 @@ class App extends Component {
     this.state = {
       categoryOptions: null,
       forceOptions: null,
+      category: null,
+      force: null,
       reports: null
     };
 
@@ -47,8 +49,16 @@ class App extends Component {
 
   getCrimeReports() {
     const { category, force } = this.state;
+    console.log('5644454', category, force);
+    if (category === null) {
+      toaster.notify('Please Select Crime Category !');
+      return false;
+    } else if (force === null) {
+      toaster.notify('Please Select Police Force !');
+      return false;
+    }
     crimeReports(category, force).then(value => {
-      this.setState({ reports: value });
+      this.setState({ reports: value, category: null, force: null });
     });
   }
 
@@ -92,7 +102,7 @@ class App extends Component {
           />
           <PrimaryButton getData={this.getCrimeReports} />
         </Pane>
-        <DataTable />
+        <DataTable reports={reports} />
       </Fragment>
     );
   }

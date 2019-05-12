@@ -1,75 +1,61 @@
 import React from 'react';
-import { Table } from 'evergreen-ui';
+import { Table, Text } from 'evergreen-ui';
 
-function DataTable() {
-  const profiles = [
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' },
-    { name: 'a', lastActivity: 'none', ltv: '1454' }
-    // { name: 'a', lastActivity: 'none', ltv: '1454' }
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' },
-    // { name: 'a', lastActivity: 'none', ltv: '1454' }
-  ];
+function DataTable(props) {
+  // const reports = [
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' },
+  //   { name: 'a', lastActivity: 'none', ltv: '1454' }
+  // ];
+  const { reports } = props;
   return (
     <Table elevation={1} marginTop={25} marginBottom={25}>
       <Table.Head>
-        <Table.SearchHeaderCell />
-        <Table.TextHeaderCell>Last Activity</Table.TextHeaderCell>
-        <Table.TextHeaderCell>ltv</Table.TextHeaderCell>
+        {/* <Table.SearchHeaderCell /> */}
+        <Table.TextHeaderCell>No.</Table.TextHeaderCell>
+        <Table.TextHeaderCell>ID</Table.TextHeaderCell>
+        <Table.TextHeaderCell>Category</Table.TextHeaderCell>
+        <Table.TextHeaderCell>Date</Table.TextHeaderCell>
+        <Table.TextHeaderCell>Status</Table.TextHeaderCell>
       </Table.Head>
       <Table.Body height={475}>
-        {profiles.map(profile => (
-          <Table.Row
-            key={profile.id}
-            isSelectable
-            onSelect={() => alert(profile.name)}
-          >
-            <Table.TextCell>{profile.name}</Table.TextCell>
-            <Table.TextCell>{profile.lastActivity}</Table.TextCell>
-            <Table.TextCell isNumber>{profile.ltv}</Table.TextCell>
+        {!reports && (
+          <Table.Row>
+            <Table.TextCell>
+              <Text size={600} marginLeft={10}>
+                There is no reports available.
+              </Text>
+            </Table.TextCell>
           </Table.Row>
-        ))}
+        )}
+        {reports &&
+          reports.map((report, i) => (
+            <Table.Row
+              key={i}
+              isSelectable
+              // onSelect={() => alert(report.name)}
+            >
+              <Table.TextCell>{i + 1}</Table.TextCell>
+              <Table.TextCell>{report.id}</Table.TextCell>
+              <Table.TextCell>{report.category}</Table.TextCell>
+              <Table.TextCell>{report.outcome_status.date}</Table.TextCell>
+              <Table.TextCell isNumber>
+                {report.outcome_status.category}
+              </Table.TextCell>
+            </Table.Row>
+          ))}
       </Table.Body>
     </Table>
   );

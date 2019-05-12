@@ -11,12 +11,14 @@ function SelectInput(props) {
       height={50}
       onChange={event => handleClick(event.target.value, num)}
     >
-      <option value={`${selected} !`} checked>
+      <option value={`Please ${selected} !`} checked>
         {selected}
       </option>
       {options &&
-        options.map(item => (
-          <option value={num === 1 ? item.url : item.id}>{item.name}</option>
+        options.map((item, i) => (
+          <option key={i + 1} value={num === 1 ? item.url : item.id}>
+            {item.name}
+          </option>
         ))}
     </Select>
   );
