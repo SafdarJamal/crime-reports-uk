@@ -6,6 +6,8 @@ import DataTable from './components/DataTable.jsx';
 
 import { Pane } from 'evergreen-ui';
 
+import crimeCategories from './apis/crimeCategories';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +15,9 @@ class App extends Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    crimeCategories();
+  }
   render() {
     return (
       <Fragment>
