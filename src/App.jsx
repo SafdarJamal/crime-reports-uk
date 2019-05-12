@@ -4,7 +4,7 @@ import SelectInput from './components/SelectInput.jsx';
 import PrimaryButton from './components/PrimaryButton.jsx';
 import DataTable from './components/DataTable.jsx';
 
-import { Pane } from 'evergreen-ui';
+import { Pane, toaster } from 'evergreen-ui';
 
 import categories from './apis/categories';
 import forces from './apis/forces';
@@ -22,7 +22,6 @@ class App extends Component {
 
     this.getCrimeReports = this.getCrimeReports.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
-    // this.SelectedForce = this.SelectedForce.bind(this);
   }
 
   componentDidMount() {
@@ -40,13 +39,11 @@ class App extends Component {
       this.setState({ category: value });
     } else if (num === 2) {
       this.setState({ force: value });
-    } else {
-      alert(value);
+    }
+    if (value.charAt(value.length - 1) === '!') {
+      toaster.notify(value);
     }
   }
-  // SelectedForce(value) {
-  //   this.setState({ force: value });
-  // }
 
   getCrimeReports() {
     const { category, force } = this.state;

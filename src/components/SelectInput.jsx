@@ -11,7 +11,7 @@ function SelectInput(props) {
       height={50}
       onChange={event => handleClick(event.target.value, num)}
     >
-      <option value="Please select one!" checked>
+      <option value={`${selected} !`} checked>
         {selected}
       </option>
       {options &&
