@@ -21,10 +21,12 @@ class App extends Component {
 
   componentDidMount() {
     categories().then(value => {
-      console.log(value);
+      this.setState({ categoryOptions: value });
+      // console.log(value);
     });
     forces().then(value => {
-      console.log(value);
+      this.setState({ forceOptions: value });
+      // console.log(value);
     });
   }
 
@@ -46,8 +48,11 @@ class App extends Component {
           justifyContent="center"
           border="default"
         >
-          <SelectInput categoryOptions={categoryOptions} />
-          <SelectInput forceOptions={forceOptions} />
+          <SelectInput
+            options={categoryOptions}
+            default="Select Crime Category"
+          />
+          <SelectInput options={forceOptions} default="Select Police Force" />
           <PrimaryButton />
         </Pane>
         <DataTable />

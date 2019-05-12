@@ -1,7 +1,8 @@
 import React from 'react';
 import { Select } from 'evergreen-ui';
 
-function SelectInput() {
+function SelectInput(props) {
+  // console.log(props.options);
   return (
     <Select
       width="100%"
@@ -10,9 +11,12 @@ function SelectInput() {
       onChange={event => alert(event.target.value)}
     >
       <option value="foo" checked>
-        Foo
+        {props.default}
       </option>
-      <option value="bar">Bar</option>
+      {props.options &&
+        props.options.map((item, i) => (
+          <option value={item.name}>{item.name}</option>
+        ))}
     </Select>
   );
 }
