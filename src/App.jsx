@@ -20,13 +20,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    categories().then(value => {
-      this.setState({ categoryOptions: value });
-      // console.log(value);
-    });
-    forces().then(value => {
-      this.setState({ forceOptions: value });
-      // console.log(value);
+    categories().then(value1 => {
+      forces().then(value2 => {
+        this.setState({ categoryOptions: value1, forceOptions: value2 });
+        // console.log(value);
+      });
     });
   }
 

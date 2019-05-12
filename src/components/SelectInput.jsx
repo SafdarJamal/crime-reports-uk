@@ -10,7 +10,7 @@ function SelectInput(props) {
       height={50}
       onChange={event => alert(event.target.value)}
     >
-      <option value="foo" checked>
+      <option value="Please select one!" checked>
         {props.default}
       </option>
       {props.options &&
