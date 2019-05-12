@@ -21,8 +21,8 @@ class App extends Component {
     };
 
     this.getCrimeReports = this.getCrimeReports.bind(this);
-    this.SelectedCategory = this.SelectedCategory.bind(this);
-    this.SelectedForce = this.SelectedForce.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
+    // this.SelectedForce = this.SelectedForce.bind(this);
   }
 
   componentDidMount() {
@@ -34,12 +34,19 @@ class App extends Component {
     });
   }
 
-  SelectedCategory(value) {
-    this.setState({ category: value });
+  handleSelect(value, num) {
+    console.log(value, num);
+    if (num === 1) {
+      this.setState({ category: value });
+    } else if (num === 2) {
+      this.setState({ force: value });
+    } else {
+      alert(value);
+    }
   }
-  SelectedForce(value) {
-    this.setState({ force: value });
-  }
+  // SelectedForce(value) {
+  //   this.setState({ force: value });
+  // }
 
   getCrimeReports() {
     const { category, force } = this.state;
@@ -49,8 +56,15 @@ class App extends Component {
   }
 
   render() {
-    const { categoryOptions, forceOptions, reports } = this.state;
+    const {
+      categoryOptions,
+      forceOptions,
+      category,
+      force,
+      reports
+    } = this.state;
     console.log(reports);
+    console.log('===>', category, force);
     return (
       <Fragment>
         <Header />
@@ -70,12 +84,14 @@ class App extends Component {
           <SelectInput
             options={categoryOptions}
             selected="Select Crime Category"
-            handleClick1={this.SelectedCategory}
+            handleClick={this.handleSelect}
+            num={1}
           />
           <SelectInput
             options={forceOptions}
             selected="Select Police Force"
-            handleClick2={this.SelectedForce}
+            handleClick={this.handleSelect}
+            num={2}
           />
           <PrimaryButton getData={this.getCrimeReports} />
         </Pane>
