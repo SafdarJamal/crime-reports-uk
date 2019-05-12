@@ -8,6 +8,7 @@ import { Pane } from 'evergreen-ui';
 
 import categories from './apis/categories';
 import forces from './apis/forces';
+import crimeReports from './apis/crimeReports';
 
 class App extends Component {
   constructor(props) {
@@ -15,8 +16,11 @@ class App extends Component {
 
     this.state = {
       categoryOptions: null,
-      forceOptions: null
+      forceOptions: null,
+      reports: null
     };
+
+    this.getCrimeReports = this.getCrimeReports.bind(this);
   }
 
   componentDidMount() {
@@ -28,8 +32,15 @@ class App extends Component {
     });
   }
 
+  getCrimeReports() {
+    crimeReports().then(value => {
+      this.setState({ reports: value });
+    });
+  }
+
   render() {
-    const { categoryOptions, forceOptions } = this.state;
+    const { categoryOptions, forceOptions, reports } = this.state;
+    console.log(reports);
     return (
       <Fragment>
         <Header />
@@ -51,7 +62,7 @@ class App extends Component {
             default="Select Crime Category"
           />
           <SelectInput options={forceOptions} default="Select Police Force" />
-          <PrimaryButton />
+          <PrimaryButton getData={this.getCrimeReports} />
         </Pane>
         <DataTable />
       </Fragment>
