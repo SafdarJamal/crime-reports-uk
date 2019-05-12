@@ -3,6 +3,9 @@ import { Select } from 'evergreen-ui';
 
 function SelectInput(props) {
   // console.log(props.options);
+  const { options, selected, handleClick1, handleClick2 } = props;
+  if (handleClick1) {
+  }
   return (
     <Select
       width="100%"
@@ -11,12 +14,10 @@ function SelectInput(props) {
       onChange={event => alert(event.target.value)}
     >
       <option value="Please select one!" checked>
-        {props.default}
+        {selected}
       </option>
-      {props.options &&
-        props.options.map((item, i) => (
-          <option value={item.name}>{item.name}</option>
-        ))}
+      {options &&
+        options.map(item => <option value={item.url}>{item.name}</option>)}
     </Select>
   );
 }

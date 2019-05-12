@@ -21,19 +21,29 @@ class App extends Component {
     };
 
     this.getCrimeReports = this.getCrimeReports.bind(this);
+    this.SelectedCategory = this.SelectedCategory.bind(this);
+    this.SelectedForce = this.SelectedForce.bind(this);
   }
 
   componentDidMount() {
     categories().then(value1 => {
       forces().then(value2 => {
         this.setState({ categoryOptions: value1, forceOptions: value2 });
-        // console.log(value);
+        console.log(value1, value2);
       });
     });
   }
 
+  SelectedCategory(value) {
+    this.setState({ category: value });
+  }
+  SelectedForce(value) {
+    this.setState({ force: value });
+  }
+
   getCrimeReports() {
-    crimeReports().then(value => {
+    const { category, force } = this.state;
+    crimeReports(category, force).then(value => {
       this.setState({ reports: value });
     });
   }
@@ -59,9 +69,14 @@ class App extends Component {
         >
           <SelectInput
             options={categoryOptions}
-            default="Select Crime Category"
+            selected="Select Crime Category"
+            handleClick1={this.SelectedCategory}
           />
-          <SelectInput options={forceOptions} default="Select Police Force" />
+          <SelectInput
+            options={forceOptions}
+            selected="Select Police Force"
+            handleClick2={this.SelectedForce}
+          />
           <PrimaryButton getData={this.getCrimeReports} />
         </Pane>
         <DataTable />
