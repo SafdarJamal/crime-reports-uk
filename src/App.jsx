@@ -6,22 +6,30 @@ import DataTable from './components/DataTable.jsx';
 
 import { Pane } from 'evergreen-ui';
 
-import crimeCategories from './apis/crimeCategories';
+import categories from './apis/categories';
+import forces from './apis/forces';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      categoryOptions: null,
+      forceOptions: null
+    };
   }
 
   componentDidMount() {
-    crimeCategories().then(value => {
+    categories().then(value => {
+      console.log(value);
+    });
+    forces().then(value => {
       console.log(value);
     });
   }
 
   render() {
+    const { categoryOptions, forceOptions } = this.state;
     return (
       <Fragment>
         <Header />
@@ -38,8 +46,8 @@ class App extends Component {
           justifyContent="center"
           border="default"
         >
-          <SelectInput />
-          <SelectInput />
+          <SelectInput categoryOptions={categoryOptions} />
+          <SelectInput forceOptions={forceOptions} />
           <PrimaryButton />
         </Pane>
         <DataTable />
