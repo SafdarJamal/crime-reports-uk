@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, majorScale } from 'evergreen-ui';
 
 function PrimaryButton(props) {
-  console.log(props.getData);
   return (
     <Button
       appearance="primary"

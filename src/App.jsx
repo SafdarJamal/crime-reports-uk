@@ -6,9 +6,7 @@ import DataTable from './components/DataTable.jsx';
 
 import { Pane, toaster } from 'evergreen-ui';
 
-import categories from './apis/categories';
-import forces from './apis/forces';
-import crimeReports from './apis/crimeReports';
+import { categories, forces, crimeReports } from './apis/UK_POLICE';
 
 class App extends Component {
   constructor(props) {
@@ -30,7 +28,7 @@ class App extends Component {
     categories().then(value1 => {
       forces().then(value2 => {
         this.setState({ categoryOptions: value1, forceOptions: value2 });
-        console.log(value1, value2);
+        // console.log(value1, value2);
       });
     });
   }
@@ -80,7 +78,6 @@ class App extends Component {
           marginTop={25}
           height={240}
           width="100%"
-          // display="flex"
           paddingRight={25}
           paddingLeft={25}
           background="tint2"
