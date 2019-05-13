@@ -8,24 +8,26 @@ function DataTable(props) {
       <Table.Head>
         <Table.TextHeaderCell>No.</Table.TextHeaderCell>
         <Table.TextHeaderCell>ID</Table.TextHeaderCell>
-        {/* <Table.TextHeaderCell>Category</Table.TextHeaderCell> */}
         <Table.TextHeaderCell>Date</Table.TextHeaderCell>
         <Table.TextHeaderCell>Status</Table.TextHeaderCell>
       </Table.Head>
       <Table.Body height={475}>
         {!reports && (
-          // <Table.Row>
-          //   <Table.TextCell>
-          //     <Text size={600} marginLeft={10}>
-          //       There is no reports available.
-          //     </Text>
-          //   </Table.TextCell>
-          // </Table.Row>
           <Pane>
             <Spinner size={50} marginX="auto" marginY={120} />
           </Pane>
         )}
+        {reports && reports[0] === undefined && (
+          <Table.Row>
+            <Table.TextCell>
+              <Text size={600} marginLeft={10}>
+                There is no reports available.
+              </Text>
+            </Table.TextCell>
+          </Table.Row>
+        )}
         {reports &&
+          reports[0] !== undefined &&
           reports.map((report, i) => (
             <Table.Row
               key={i}

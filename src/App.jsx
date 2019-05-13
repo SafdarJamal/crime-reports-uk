@@ -55,7 +55,7 @@ class App extends Component {
 
   getCrimeReports() {
     const { category, force } = this.state;
-    console.log('5644454', category, force);
+    console.log('>>>>>>>', category, force);
     if (category === null) {
       toaster.notify('Please Select Crime Category !');
       return false;
