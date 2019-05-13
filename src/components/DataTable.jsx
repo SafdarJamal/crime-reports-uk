@@ -1,18 +1,47 @@
 import React from 'react';
-import { Table, Text, toaster, Spinner, Pane } from 'evergreen-ui';
+import { Table, Text, toaster } from 'evergreen-ui';
 
 class DataTable extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      listNumber: 15
+    };
+
+    this.handleScrolling = this.handleScrolling.bind(this);
+  }
+
+  handleScrolling(event) {
+    // console.log('<><><><>Scrolling');
+    const { listNumber } = this.state;
+    const bottom =
+      event.target.scrollHeight - event.target.scrollTop ===
+      event.target.clientHeight;
+    if (bottom) {
+      this.setState({ listNumber: listNumber + 15 });
+    }
   }
 
   render() {
+    const { listNumber } = this.state;
     const { reports } = this.props;
 
+    let controlledList;
+    if (reports) {
+      controlledList = [...reports];
+      controlledList.length = listNumber;
+    } else {
+      controlledList = null;
+    }
+
     return (
-      <Table elevation={1} marginTop={25} marginBottom={25}>
+      <Table
+        onScroll={this.handleScrolling}
+        elevation={1}
+        marginTop={25}
+        marginBottom={25}
+      >
         <Table.Head>
           <Table.TextHeaderCell>No.</Table.TextHeaderCell>
           <Table.TextHeaderCell>ID</Table.TextHeaderCell>
@@ -20,23 +49,23 @@ class DataTable extends React.Component {
           <Table.TextHeaderCell>Status</Table.TextHeaderCell>
         </Table.Head>
         <Table.Body height={475}>
-          {!reports && (
+          {/* {!controlledList && (
             <Pane>
               <Spinner size={50} marginX="auto" marginY={120} />
             </Pane>
-          )}
-          {reports && reports[0] === undefined && (
+          )} */}
+          {controlledList && controlledList[0] === undefined && (
             <Table.Row>
               <Table.TextCell>
                 <Text size={600} marginLeft={10}>
-                  There is no reports available.
+                  There is no report available.
                 </Text>
               </Table.TextCell>
             </Table.Row>
           )}
-          {reports &&
-            reports[0] !== undefined &&
-            reports.map((report, i) => (
+          {controlledList &&
+            controlledList[0] !== undefined &&
+            controlledList.map((report, i) => (
               <Table.Row
                 key={i}
                 isSelectable

@@ -55,7 +55,7 @@ class App extends Component {
 
   getCrimeReports() {
     const { category, force } = this.state;
-    console.log('>>>>>>>', category, force);
+    // console.log('>>>>>>>', category, force);
     if (category === null) {
       toaster.notify('Please Select Crime Category !');
       return false;
@@ -76,8 +76,8 @@ class App extends Component {
       force,
       reports
     } = this.state;
-    console.log(reports);
-    console.log('===>', category, force);
+    // console.log(reports);
+    // console.log('===>', category, force);
     return (
       <Fragment>
         <Header />
