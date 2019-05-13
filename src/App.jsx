@@ -34,14 +34,22 @@ class App extends Component {
   }
 
   handleSelect(value, num) {
-    console.log(value, num);
+    const { category, force } = this.state;
+    // console.log(value, num);
     if (num === 1) {
-      this.setState({ category: value });
+      if (value !== category && value.charAt(value.length - 1) !== '!') {
+        this.setState({ category: value });
+      } else if (value.charAt(value.length - 1) === '!') {
+        toaster.notify(value);
+      }
+      return false;
     } else if (num === 2) {
-      this.setState({ force: value });
-    }
-    if (value.charAt(value.length - 1) === '!') {
-      toaster.notify(value);
+      if (value !== force && value.charAt(value.length - 1) !== '!') {
+        this.setState({ force: value });
+      } else if (value.charAt(value.length - 1) === '!') {
+        toaster.notify(value);
+      }
+      return false;
     }
   }
 
