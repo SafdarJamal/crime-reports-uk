@@ -72,12 +72,14 @@ class App extends Component {
     const {
       categoryOptions,
       forceOptions,
-      category,
-      force,
+      // category,
+      // force,
       reports
     } = this.state;
+
     // console.log(reports);
     // console.log('===>', category, force);
+
     return (
       <Fragment>
         <Header />

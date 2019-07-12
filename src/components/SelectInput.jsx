@@ -4,6 +4,7 @@ import { Select } from 'evergreen-ui';
 function SelectInput(props) {
   // console.log(props.options);
   const { options, selected, handleClick, num } = props;
+
   return (
     <Select
       width="100%"
