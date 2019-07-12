@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import Header from './components/Header.jsx';
-import SelectInput from './components/SelectInput.jsx';
-import PrimaryButton from './components/PrimaryButton.jsx';
-import DataTable from './components/DataTable.jsx';
+import Header from './Header.jsx';
+import SelectInput from './SelectInput.jsx';
+import PrimaryButton from './PrimaryButton.jsx';
+import DataTable from './DataTable.jsx';
 
 import { Pane, toaster } from 'evergreen-ui';
 
-import { categories, forces, crimeReports } from './apis/UK_POLICE';
+import { categories, forces, crimeReports } from '../apis/UK_POLICE';
 
 class App extends Component {
   constructor(props) {
