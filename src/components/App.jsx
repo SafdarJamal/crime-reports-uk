@@ -1,16 +1,15 @@
 import React, { Component, Fragment } from 'react';
-import Header from './Header.jsx';
-import SelectInput from './SelectInput.jsx';
-import PrimaryButton from './PrimaryButton.jsx';
-import DataTable from './DataTable.jsx';
-
 import { Pane, toaster } from 'evergreen-ui';
+import { categories, forces, crimeReports } from '../api/UK_POLICE';
 
-import { categories, forces, crimeReports } from '../apis/UK_POLICE';
+import Header from './Header';
+import SelectInput from './SelectInput';
+import PrimaryButton from './PrimaryButton';
+import DataTable from './DataTable';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       categoryOptions: null,
@@ -20,8 +19,8 @@ class App extends Component {
       reports: null
     };
 
-    this.getCrimeReports = this.getCrimeReports.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+    this.getCrimeReports = this.getCrimeReports.bind(this);
   }
 
   componentDidMount() {
