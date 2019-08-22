@@ -24,22 +24,20 @@ class App extends Component {
   }
 
   componentDidMount() {
-    categories().then(value1 => {
-      forces().then(value2 => {
-        this.setState({ categoryOptions: value1, forceOptions: value2 });
-        // console.log(value1, value2);
-      });
-    });
+    categories()
+      .then(value1 => {
+        forces().then(value2 => {
+          this.setState({ categoryOptions: value1, forceOptions: value2 });
+          // console.log(value1, value2);
+        });
+      })
+      .catch(error => console.log(`===> ${error.message}`));
   }
 
-  handleSelect(value, num) {
-    console.log(value, num);
+  handleSelect(name, value) {
+    // console.log(name, value);
 
-    if (num === 1) {
-      this.setState({ category: value });
-    } else if (num === 2) {
-      this.setState({ force: value });
-    }
+    this.setState({ [name]: value });
   }
 
   getCrimeReports() {
@@ -47,16 +45,17 @@ class App extends Component {
     // console.log(category, force);
 
     if (category === '') {
-      toaster.notify('Please Select Crime Category !');
-      return false;
-    } else if (force === '') {
-      toaster.notify('Please Select Police Force !');
-      return false;
+      return toaster.notify('Please Select Crime Category !');
+    }
+    if (force === '') {
+      return toaster.notify('Please Select Police Force !');
     }
 
-    crimeReports(category, force).then(value => {
-      this.setState({ reports: value, category: null, force: null });
-    });
+    crimeReports(category, force)
+      .then(value => {
+        this.setState({ reports: value, category: null, force: null });
+      })
+      .catch(error => console.log(error.message));
   }
 
   render() {
@@ -90,13 +89,13 @@ class App extends Component {
             options={categoryOptions}
             selected="Select Crime Category"
             handleSelect={this.handleSelect}
-            num={1}
+            name="category"
           />
           <SelectInput
             options={forceOptions}
             selected="Select Police Force"
             handleSelect={this.handleSelect}
-            num={2}
+            name="force"
           />
           <PrimaryButton getData={this.getCrimeReports} />
         </Pane>

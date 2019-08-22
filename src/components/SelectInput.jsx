@@ -2,21 +2,21 @@ import React from 'react';
 import { Select } from 'evergreen-ui';
 
 function SelectInput(props) {
-  // console.log(props.options);
-  const { options, selected, handleSelect, num } = props;
+  const { name, selected, options, handleSelect } = props;
+  // console.log(options);
 
   return (
     <Select
       width="100%"
-      marginTop={25}
       height={50}
+      marginTop={25}
       value=""
-      onChange={event => handleSelect(event.target.value, num)}
+      onChange={event => handleSelect(name, event.target.value)}
     >
       <option value="">{selected}</option>
       {options &&
         options.map((item, i) => (
-          <option key={i + 1} value={num === 1 ? item.url : item.id}>
+          <option key={i + 1} value={name === 'category' ? item.url : item.id}>
             {item.name}
           </option>
         ))}
