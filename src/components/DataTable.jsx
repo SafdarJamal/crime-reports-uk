@@ -13,11 +13,13 @@ class DataTable extends React.Component {
   }
 
   handleScrolling(event) {
-    // console.log('<><><><>Scrolling');
     const { listNumber } = this.state;
+    // console.log('<><><><>Scrolling');
+
     const bottom =
       event.target.scrollHeight - event.target.scrollTop ===
       event.target.clientHeight;
+
     if (bottom) {
       this.setState({ listNumber: listNumber + 15 });
     }
@@ -28,6 +30,7 @@ class DataTable extends React.Component {
     const { reports } = this.props;
 
     let controlledList;
+
     if (reports) {
       controlledList = [...reports];
       controlledList.length = listNumber;

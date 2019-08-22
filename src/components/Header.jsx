@@ -1,15 +1,15 @@
 import React from 'react';
-import { Pane, Heading, Avatar } from 'evergreen-ui';
+import { Pane, Avatar, Heading } from 'evergreen-ui';
 
 function Header() {
   return (
     <Pane
       elevation={1}
       display="flex"
-      padding={16}
+      padding={14}
       marginTop={10}
       background="overlay"
-      borderRadius={3}
+      // borderRadius={12}
     >
       <Pane flex={1} alignItems="center" display="flex">
         <Avatar name="Crime Reports" size={40} marginRight={12} />
