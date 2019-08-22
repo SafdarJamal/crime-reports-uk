@@ -9,7 +9,7 @@ function PrimaryButton(props) {
       marginTop={25}
       height={majorScale(5)}
       iconBefore="search"
-      onClick={props.getData}
+      onClick={props.getCrimeReports}
     >
       Search
     </Button>

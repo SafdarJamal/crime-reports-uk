@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import { Pane, toaster } from 'evergreen-ui';
+import { toaster } from 'evergreen-ui';
 import { categories, forces, crimeReports } from '../api/UK_POLICE';
 
 import Header from './Header';
-import SelectInput from './SelectInput';
-import PrimaryButton from './PrimaryButton';
+import Main from './Main';
 import DataTable from './DataTable';
 
 class App extends Component {
@@ -73,32 +72,12 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-        <Pane
-          elevation={1}
-          marginTop={25}
-          height={240}
-          width="100%"
-          paddingRight={25}
-          paddingLeft={25}
-          background="tint2"
-          alignItems="center"
-          justifyContent="center"
-          border="default"
-        >
-          <SelectInput
-            options={categoryOptions}
-            selected="Select Crime Category"
-            handleSelect={this.handleSelect}
-            name="category"
-          />
-          <SelectInput
-            options={forceOptions}
-            selected="Select Police Force"
-            handleSelect={this.handleSelect}
-            name="force"
-          />
-          <PrimaryButton getData={this.getCrimeReports} />
-        </Pane>
+        <Main
+          categoryOptions={categoryOptions}
+          forceOptions={forceOptions}
+          handleSelect={this.handleSelect}
+          getCrimeReports={this.getCrimeReports}
+        />
         <DataTable reports={reports} />
       </Fragment>
     );
