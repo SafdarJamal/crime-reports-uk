@@ -33,35 +33,27 @@ class App extends Component {
   }
 
   handleSelect(value, num) {
-    const { category, force } = this.state;
-    // console.log(value, num);
+    console.log(value, num);
+
     if (num === 1) {
-      if (value !== category && value.charAt(value.length - 1) !== '!') {
-        this.setState({ category: value });
-      } else if (value.charAt(value.length - 1) === '!') {
-        toaster.notify(value);
-      }
-      return false;
+      this.setState({ category: value });
     } else if (num === 2) {
-      if (value !== force && value.charAt(value.length - 1) !== '!') {
-        this.setState({ force: value });
-      } else if (value.charAt(value.length - 1) === '!') {
-        toaster.notify(value);
-      }
-      return false;
+      this.setState({ force: value });
     }
   }
 
   getCrimeReports() {
     const { category, force } = this.state;
-    // console.log('>>>>>>>', category, force);
-    if (category === null) {
+    // console.log(category, force);
+
+    if (category === '') {
       toaster.notify('Please Select Crime Category !');
       return false;
-    } else if (force === null) {
+    } else if (force === '') {
       toaster.notify('Please Select Police Force !');
       return false;
     }
+
     crimeReports(category, force).then(value => {
       this.setState({ reports: value, category: null, force: null });
     });
@@ -97,13 +89,13 @@ class App extends Component {
           <SelectInput
             options={categoryOptions}
             selected="Select Crime Category"
-            handleClick={this.handleSelect}
+            handleSelect={this.handleSelect}
             num={1}
           />
           <SelectInput
             options={forceOptions}
             selected="Select Police Force"
-            handleClick={this.handleSelect}
+            handleSelect={this.handleSelect}
             num={2}
           />
           <PrimaryButton getData={this.getCrimeReports} />
