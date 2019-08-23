@@ -79,7 +79,7 @@ class DataTable extends React.Component {
                 }
               >
                 <Table.TextCell>{i + 1}</Table.TextCell>
-                <Table.TextCell>{report.id}</Table.TextCell>
+                <Table.TextCell>{report.persistent_id}</Table.TextCell>
                 <Table.TextCell>{report.outcome_status.date}</Table.TextCell>
                 <Table.TextCell isNumber>
                   {report.outcome_status.category}
