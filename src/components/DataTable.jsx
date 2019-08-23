@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Text, toaster, Pane, Spinner } from 'evergreen-ui';
+import { Table, Text, Pane, Spinner, toaster } from 'evergreen-ui';
 
 class DataTable extends React.Component {
   constructor(props) {
@@ -38,8 +38,6 @@ class DataTable extends React.Component {
       controlledList = null;
     }
 
-    console.log(controlledList, '==>', reports);
-
     return (
       <Table
         onScroll={this.handleScrolling}
@@ -70,7 +68,8 @@ class DataTable extends React.Component {
                 </Table.TextCell>
               </Table.Row>
             )}
-          {controlledList &&
+          {!fetchingReports &&
+            controlledList &&
             controlledList[0] !== undefined &&
             controlledList.map((report, i) => (
               <Table.Row

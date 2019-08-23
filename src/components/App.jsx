@@ -66,7 +66,7 @@ class App extends Component {
           this.setState({ reports, fetchingReports: false });
         })
         .catch(error => console.log(`Get Crime Reports ==> ${error.message}`));
-    }, 3000);
+    }, 1000);
   }
 
   render() {
