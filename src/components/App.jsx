@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { toaster } from 'evergreen-ui';
 import { categories, forces, crimeReports } from '../api/UK_POLICE';
 
+import Loader from './Loader';
 import Header from './Header';
 import Main from './Main';
 import DataTable from './DataTable';
@@ -11,6 +12,7 @@ class App extends Component {
     super();
 
     this.state = {
+      isLoading: true,
       categoryOptions: null,
       forceOptions: null,
       category: null,
@@ -24,13 +26,18 @@ class App extends Component {
 
   componentDidMount() {
     categories()
-      .then(value1 => {
-        forces().then(value2 => {
-          this.setState({ categoryOptions: value1, forceOptions: value2 });
-          // console.log(value1, value2);
-        });
+      .then(categoryOptions => {
+        forces()
+          .then(forceOptions => {
+            this.setState({
+              categoryOptions,
+              forceOptions,
+              isLoading: false
+            });
+          })
+          .catch(error => console.log(`Get Forces ==> ${error.message}`));
       })
-      .catch(error => console.log(`===> ${error.message}`));
+      .catch(error => console.log(`Get Categories ==> ${error.message}`));
   }
 
   handleSelect(name, value) {
@@ -54,11 +61,12 @@ class App extends Component {
       .then(value => {
         this.setState({ reports: value, category: null, force: null });
       })
-      .catch(error => console.log(error.message));
+      .catch(error => console.log(`Get Crime Reports ==> ${error.message}`));
   }
 
   render() {
     const {
+      isLoading,
       categoryOptions,
       forceOptions,
       // category,
@@ -68,6 +76,10 @@ class App extends Component {
 
     // console.log(reports);
     // console.log('===>', category, force);
+
+    if (isLoading) {
+      return <Loader />;
+    }
 
     return (
       <Fragment>
