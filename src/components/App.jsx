@@ -17,7 +17,8 @@ class App extends Component {
       forceOptions: null,
       category: '',
       force: '',
-      reports: null
+      reports: null,
+      fetchingReports: false
     };
 
     this.handleSelect = this.handleSelect.bind(this);
@@ -57,11 +58,15 @@ class App extends Component {
       return toaster.notify('Please Select Police Force !');
     }
 
-    crimeReports(category, force)
-      .then(reports => {
-        this.setState({ reports });
-      })
-      .catch(error => console.log(`Get Crime Reports ==> ${error.message}`));
+    this.setState({ fetchingReports: true });
+
+    setTimeout(() => {
+      crimeReports(category, force)
+        .then(reports => {
+          this.setState({ reports, fetchingReports: false });
+        })
+        .catch(error => console.log(`Get Crime Reports ==> ${error.message}`));
+    }, 3000);
   }
 
   render() {
@@ -71,7 +76,8 @@ class App extends Component {
       forceOptions,
       // category,
       // force,
-      reports
+      reports,
+      fetchingReports
     } = this.state;
 
     // console.log(reports);
@@ -90,7 +96,7 @@ class App extends Component {
           handleSelect={this.handleSelect}
           getCrimeReports={this.getCrimeReports}
         />
-        <DataTable reports={reports} />
+        <DataTable reports={reports} fetchingReports={fetchingReports} />
       </Fragment>
     );
   }

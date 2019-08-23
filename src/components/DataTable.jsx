@@ -27,7 +27,7 @@ class DataTable extends React.Component {
 
   render() {
     const { listNumber } = this.state;
-    const { reports } = this.props;
+    const { reports, fetchingReports } = this.props;
 
     let controlledList;
 
@@ -37,6 +37,8 @@ class DataTable extends React.Component {
     } else {
       controlledList = null;
     }
+
+    console.log(controlledList, '==>', reports);
 
     return (
       <Table
@@ -52,20 +54,22 @@ class DataTable extends React.Component {
           <Table.TextHeaderCell>STATUS</Table.TextHeaderCell>
         </Table.Head>
         <Table.Body height={475}>
-          {!controlledList && (
+          {fetchingReports && (
             <Pane>
               <Spinner size={50} marginX="auto" marginY={10} />
             </Pane>
           )}
-          {controlledList && controlledList[0] === undefined && (
-            <Table.Row>
-              <Table.TextCell>
-                <Text size={600} marginLeft={10}>
-                  There is no report available.
-                </Text>
-              </Table.TextCell>
-            </Table.Row>
-          )}
+          {!fetchingReports &&
+            controlledList &&
+            controlledList[0] === undefined && (
+              <Table.Row>
+                <Table.TextCell>
+                  <Text size={600} marginLeft={10}>
+                    There is no report available.
+                  </Text>
+                </Table.TextCell>
+              </Table.Row>
+            )}
           {controlledList &&
             controlledList[0] !== undefined &&
             controlledList.map((report, i) => (
