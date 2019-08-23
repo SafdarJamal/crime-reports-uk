@@ -15,8 +15,8 @@ class App extends Component {
       isLoading: true,
       categoryOptions: null,
       forceOptions: null,
-      category: null,
-      force: null,
+      category: '',
+      force: '',
       reports: null
     };
 
@@ -48,7 +48,7 @@ class App extends Component {
 
   getCrimeReports() {
     const { category, force } = this.state;
-    // console.log(category, force);
+    console.log(category, force);
 
     if (category === '') {
       return toaster.notify('Please Select Crime Category !');
@@ -58,8 +58,8 @@ class App extends Component {
     }
 
     crimeReports(category, force)
-      .then(value => {
-        this.setState({ reports: value, category: null, force: null });
+      .then(reports => {
+        this.setState({ reports });
       })
       .catch(error => console.log(`Get Crime Reports ==> ${error.message}`));
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Text, toaster } from 'evergreen-ui';
+import { Table, Text, toaster, Pane, Spinner } from 'evergreen-ui';
 
 class DataTable extends React.Component {
   constructor(props) {
@@ -46,17 +46,17 @@ class DataTable extends React.Component {
         marginBottom={25}
       >
         <Table.Head>
-          <Table.TextHeaderCell>No.</Table.TextHeaderCell>
+          <Table.TextHeaderCell>NO.</Table.TextHeaderCell>
           <Table.TextHeaderCell>ID</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Date</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Status</Table.TextHeaderCell>
+          <Table.TextHeaderCell>DATE</Table.TextHeaderCell>
+          <Table.TextHeaderCell>STATUS</Table.TextHeaderCell>
         </Table.Head>
         <Table.Body height={475}>
-          {/* {!controlledList && (
+          {!controlledList && (
             <Pane>
-              <Spinner size={50} marginX="auto" marginY={120} />
+              <Spinner size={50} marginX="auto" marginY={10} />
             </Pane>
-          )} */}
+          )}
           {controlledList && controlledList[0] === undefined && (
             <Table.Row>
               <Table.TextCell>
@@ -81,7 +81,7 @@ class DataTable extends React.Component {
                 <Table.TextCell>{i + 1}</Table.TextCell>
                 <Table.TextCell>{report.persistent_id}</Table.TextCell>
                 <Table.TextCell>{report.outcome_status.date}</Table.TextCell>
-                <Table.TextCell isNumber>
+                <Table.TextCell>
                   {report.outcome_status.category}
                 </Table.TextCell>
               </Table.Row>
