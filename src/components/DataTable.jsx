@@ -6,27 +6,37 @@ class DataTable extends React.Component {
     super(props);
 
     this.state = {
-      listNumber: 15
+      listNumber: 15,
+      isBottom: false
     };
 
-    this.handleScrolling = this.handleScrolling.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
-  handleScrolling(event) {
-    const { listNumber } = this.state;
-    // console.log('<><><><>Scrolling');
-
+  handleScroll(event) {
     const bottom =
       event.target.scrollHeight - event.target.scrollTop ===
       event.target.clientHeight;
 
     if (bottom) {
-      this.setState({ listNumber: listNumber + 15 });
+      const { listNumber } = this.state;
+      const { reports } = this.props;
+      console.log('=====>>> 111');
+
+      const reportsArr = [...reports];
+      if (reportsArr.length > listNumber) {
+        console.log('=====>>> 222');
+        this.setState({ isBottom: true });
+
+        setTimeout(() => {
+          this.setState({ isBottom: false, listNumber: listNumber + 15 });
+        }, 2000);
+      }
     }
   }
 
   render() {
-    const { listNumber } = this.state;
+    const { listNumber, isBottom } = this.state;
     const { reports, fetchingReports } = this.props;
 
     let controlledList;
@@ -40,7 +50,7 @@ class DataTable extends React.Component {
 
     return (
       <Table
-        onScroll={this.handleScrolling}
+        onScroll={this.handleScroll}
         elevation={1}
         marginTop={25}
         marginBottom={25}
@@ -89,6 +99,11 @@ class DataTable extends React.Component {
                 </Table.TextCell>
               </Table.Row>
             ))}
+          {isBottom && (
+            <Pane>
+              <Spinner size={50} marginX="auto" marginY={10} />
+            </Pane>
+          )}
         </Table.Body>
       </Table>
     );

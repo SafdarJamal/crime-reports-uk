@@ -8,8 +8,8 @@ import Main from './Main';
 import DataTable from './DataTable';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       isLoading: true,
