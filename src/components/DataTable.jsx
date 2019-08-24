@@ -14,23 +14,24 @@ class DataTable extends React.Component {
   }
 
   handleScroll(event) {
-    const bottom =
-      event.target.scrollHeight - event.target.scrollTop ===
-      event.target.clientHeight;
+    const { scrollHeight, scrollTop, clientHeight } = event.target;
+    const bottom = scrollHeight - scrollTop === clientHeight;
 
     if (bottom) {
-      const { listNumber } = this.state;
+      const { listNumber, isBottom } = this.state;
       const { reports } = this.props;
-      console.log('=====>>> 111');
-
       const reportsArr = [...reports];
+
       if (reportsArr.length > listNumber) {
-        console.log('=====>>> 222');
-        this.setState({ isBottom: true });
+        if (!isBottom) {
+          this.setState({ isBottom: true });
+        }
 
         setTimeout(() => {
-          this.setState({ isBottom: false, listNumber: listNumber + 15 });
-        }, 2000);
+          this.setState({ listNumber: listNumber + 15 });
+        }, 1000);
+      } else if (isBottom) {
+        this.setState({ isBottom: false });
       }
     }
   }
