@@ -28,12 +28,13 @@ function Main(props) {
   ];
 
   const years = [2017, 2018, 2019];
+  const date = new Date();
 
   return (
     <Pane
       elevation={1}
       marginTop={25}
-      height={350}
+      height={325}
       width="100%"
       paddingRight={25}
       paddingLeft={25}
@@ -77,7 +78,7 @@ function Main(props) {
         name="year"
         onChange={handleSelect}
       >
-        <option value="">Select Year</option>
+        <option value={date.getFullYear()}>Select Year</option>
         {years.map((year, i) => (
           <option key={i + 1} value={year}>
             {year}
@@ -91,7 +92,7 @@ function Main(props) {
         name="month"
         onChange={handleSelect}
       >
-        <option value="">Select Month</option>
+        <option value={date.getMonth()}>Select Month</option>
         {months.map((months, i) => (
           <option key={i + 1} value={i}>
             {months}

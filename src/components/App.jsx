@@ -17,6 +17,8 @@ class App extends Component {
       forceOptions: null,
       category: '',
       force: '',
+      year: new Date().getFullYear(),
+      month: new Date().getMonth(),
       reports: null,
       fetchingReports: false
     };
@@ -48,7 +50,7 @@ class App extends Component {
   }
 
   getCrimeReports() {
-    const { category, force } = this.state;
+    const { category, force, year, month } = this.state;
     console.log(category, force);
 
     if (category === '') {
@@ -61,7 +63,7 @@ class App extends Component {
     this.setState({ fetchingReports: true });
 
     setTimeout(() => {
-      crimeReports(category, force)
+      crimeReports(category, force, year, month)
         .then(reports => {
           this.setState({ reports, fetchingReports: false });
         })
