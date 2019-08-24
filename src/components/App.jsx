@@ -42,7 +42,7 @@ class App extends Component {
   }
 
   handleSelect(name, value) {
-    // console.log(name, value);
+    console.log(name, value);
 
     this.setState({ [name]: value });
   }
