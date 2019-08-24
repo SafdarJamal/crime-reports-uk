@@ -10,7 +10,6 @@ function SelectInput(props) {
       width="100%"
       height={50}
       marginTop={25}
-      value=""
       onChange={event => handleSelect(name, event.target.value)}
     >
       <option value="">{selected}</option>
