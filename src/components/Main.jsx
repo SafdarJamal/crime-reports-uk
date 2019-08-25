@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pane } from 'evergreen-ui';
+import { Pane, Paragraph } from 'evergreen-ui';
 
 import CustomSelect from './CustomSelect';
 import CustomButton from './CustomButton';
@@ -34,7 +34,7 @@ function Main(props) {
     <Pane
       elevation={1}
       marginTop={25}
-      height={325}
+      height={350}
       width="100%"
       paddingRight={25}
       paddingLeft={25}
@@ -50,7 +50,7 @@ function Main(props) {
         name="category"
         onChange={handleSelect}
       >
-        <option value="">Select Crime Category</option>
+        <option value="">Select Crime Category (Required)</option>
         {categoryOptions.map((item, i) => (
           <option key={i + 1} value={item.url}>
             {item.name}
@@ -64,7 +64,7 @@ function Main(props) {
         name="force"
         onChange={handleSelect}
       >
-        <option value="">Select Police Force</option>
+        <option value="">Select Police Force (Required)</option>
         {forceOptions.map((item, i) => (
           <option key={i + 1} value={item.id}>
             {item.name}
@@ -78,7 +78,7 @@ function Main(props) {
         name="year"
         onChange={handleSelect}
       >
-        <option value={date.getFullYear()}>Select Year</option>
+        <option value={date.getFullYear()}>Select Year (Optional)</option>
         {years.map((year, i) => (
           <option key={i + 1} value={year}>
             {year}
@@ -92,16 +92,20 @@ function Main(props) {
         name="month"
         onChange={handleSelect}
       >
-        <option value={date.getMonth()}>Select Month</option>
+        <option value={date.getMonth()}>Select Month (Optional)</option>
         {months.map((months, i) => (
           <option key={i + 1} value={i}>
             {months}
           </option>
         ))}
       </CustomSelect>
+      <Paragraph size={600} marginTop={10}>
+        Limit results to a specific month. The latest month will be shown by
+        default
+      </Paragraph>
       <CustomButton
         text="Search"
-        type="primary"
+        // type="primary"
         intent="success"
         marginTop={25}
         iconBefore="search"
