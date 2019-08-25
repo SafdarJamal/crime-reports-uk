@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { toaster } from 'evergreen-ui';
 import { categories, forces, crimeReports } from '../api/UK_POLICE';
 
 import Loader from './Loader';
@@ -40,14 +39,13 @@ class App extends Component {
               isLoading: false
             });
           })
-          .catch(error => console.log(`Get Forces ==> ${error.message}`));
+          .catch(error => console.log(`Getting Forces ==> ${error.message}`));
       })
-      .catch(error => console.log(`Get Categories ==> ${error.message}`));
+      .catch(error => console.log(`Getting Categories ==> ${error.message}`));
   }
 
   handleSelect(name, value) {
-    console.log(name, value);
-
+    // console.log(name, value);
     this.setState({ [name]: value });
   }
 
@@ -69,14 +67,16 @@ class App extends Component {
       return this.setState({ categoryError, forceError });
     }
 
-    this.setState({ fetchingReports: true });
+    this.setState({ categoryError, forceError, fetchingReports: true });
 
     setTimeout(() => {
       crimeReports(category, force, year, month)
         .then(reports => {
           this.setState({ reports, fetchingReports: false });
         })
-        .catch(error => console.log(`Get Crime Reports ==> ${error.message}`));
+        .catch(error =>
+          console.log(`Getting Crime Reports ==> ${error.message}`)
+        );
     }, 1000);
   }
 
