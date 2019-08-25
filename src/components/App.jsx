@@ -17,6 +17,8 @@ class App extends Component {
       forceOptions: null,
       category: '',
       force: '',
+      categoryError: false,
+      forceError: false,
       year: new Date().getFullYear(),
       month: new Date().getMonth(),
       reports: null,
@@ -51,13 +53,20 @@ class App extends Component {
 
   getCrimeReports() {
     const { category, force, year, month } = this.state;
-    console.log(category, force);
+    // console.log(category, force);
+
+    let categoryError = false;
+    let forceError = false;
 
     if (category === '') {
-      return toaster.notify('Please Select Crime Category !');
+      categoryError = true;
     }
     if (force === '') {
-      return toaster.notify('Please Select Police Force !');
+      forceError = true;
+    }
+
+    if (categoryError || forceError) {
+      return this.setState({ categoryError, forceError });
     }
 
     this.setState({ fetchingReports: true });
@@ -78,6 +87,8 @@ class App extends Component {
       forceOptions,
       // category,
       // force,
+      categoryError,
+      forceError,
       reports,
       fetchingReports
     } = this.state;
@@ -95,6 +106,8 @@ class App extends Component {
         <Main
           categoryOptions={categoryOptions}
           forceOptions={forceOptions}
+          categoryError={categoryError}
+          forceError={forceError}
           handleSelect={this.handleSelect}
           getCrimeReports={this.getCrimeReports}
         />

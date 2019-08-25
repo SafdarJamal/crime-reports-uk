@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pane, Paragraph } from 'evergreen-ui';
+import { Pane, Paragraph, Alert } from 'evergreen-ui';
 
 import CustomSelect from './CustomSelect';
 import CustomButton from './CustomButton';
@@ -8,10 +8,14 @@ function Main(props) {
   const {
     categoryOptions,
     forceOptions,
+    categoryError,
+    forceError,
     handleSelect,
     getCrimeReports
   } = props;
 
+  const date = new Date();
+  const years = [2017, 2018, 2019];
   const months = [
     'January',
     'February',
@@ -27,22 +31,23 @@ function Main(props) {
     'December'
   ];
 
-  const years = [2017, 2018, 2019];
-  const date = new Date();
-
   return (
     <Pane
       elevation={1}
       marginTop={25}
-      height={350}
       width="100%"
-      paddingRight={25}
-      paddingLeft={25}
+      padding={25}
       background="tint2"
       alignItems="center"
       justifyContent="center"
       border="default"
     >
+      {categoryError && (
+        <Alert intent="danger" title="Please Select Crime Category !" />
+      )}
+      {forceError && (
+        <Alert intent="danger" title="Please Select Police Force !" />
+      )}
       <CustomSelect
         height={50}
         width="100%"
@@ -99,7 +104,7 @@ function Main(props) {
           </option>
         ))}
       </CustomSelect>
-      <Paragraph size={600} marginTop={10}>
+      <Paragraph size={500} marginTop={10}>
         Limit results to a specific month. The latest month will be shown by
         default
       </Paragraph>
