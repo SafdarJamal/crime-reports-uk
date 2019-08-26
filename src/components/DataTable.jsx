@@ -10,7 +10,8 @@ class DataTable extends React.Component {
       listNumber: 15,
       isBottom: false,
       isDialogShown: false,
-      dialogID: null
+      dialogID: null,
+      isCopied: false
     };
 
     this.handleScroll = this.handleScroll.bind(this);
@@ -40,8 +41,14 @@ class DataTable extends React.Component {
   }
 
   render() {
-    const { listNumber, isBottom, isDialogShown, dialogID } = this.state;
-    const { reports, fetchingReports } = this.props;
+    const {
+      listNumber,
+      isBottom,
+      isDialogShown,
+      dialogID,
+      isCopied
+    } = this.state;
+    const { fetchingReports, reports } = this.props;
     // console.log(reports);
 
     let controlledList;
@@ -63,29 +70,37 @@ class DataTable extends React.Component {
       >
         <Dialog
           isShown={isDialogShown}
-          onCloseComplete={() => this.setState({ isDialogShown: false })}
           hasHeader={false}
-          confirmLabel="Copy"
-          onConfirm={close =>
-            copyToClipboard(controlledList[dialogID].persistent_id)
+          confirmLabel={isCopied ? 'Copied' : 'Copy'}
+          onConfirm={close => {
+            copyToClipboard(controlledList[dialogID].persistent_id);
+            this.setState({ isCopied: true });
+          }}
+          onCloseComplete={() =>
+            this.setState({ isDialogShown: false, isCopied: false })
           }
         >
           <Text>
-            Crime_ID: {isDialogShown && controlledList[dialogID].persistent_id}
+            <b>CRIME_ID:</b>
+            <br />
+            {isDialogShown && controlledList[dialogID].persistent_id}
           </Text>
         </Dialog>
+
         <Table.Head>
           <Table.TextHeaderCell>NO.</Table.TextHeaderCell>
           <Table.TextHeaderCell>ID</Table.TextHeaderCell>
           <Table.TextHeaderCell>DATE</Table.TextHeaderCell>
           <Table.TextHeaderCell>STATUS</Table.TextHeaderCell>
         </Table.Head>
+
         <Table.Body height={475}>
           {fetchingReports && (
             <Pane>
               <Spinner size={50} marginX="auto" marginY={10} />
             </Pane>
           )}
+
           {!fetchingReports &&
             controlledList &&
             controlledList[0] === undefined && (
@@ -97,6 +112,7 @@ class DataTable extends React.Component {
                 </Table.TextCell>
               </Table.Row>
             )}
+
           {!fetchingReports &&
             controlledList &&
             controlledList[0] !== undefined &&
@@ -105,20 +121,18 @@ class DataTable extends React.Component {
                 key={i}
                 isSelectable
                 onSelect={() =>
-                  // toaster.notify(report.outcome_status.category, {
-                  //   id: i
-                  // })
                   this.setState({ isDialogShown: true, dialogID: i })
                 }
               >
                 <Table.TextCell>{i + 1}</Table.TextCell>
                 <Table.TextCell>{report.persistent_id}</Table.TextCell>
-                <Table.TextCell>{report.outcome_status.date}</Table.TextCell>
+                <Table.TextCell>{report.month}</Table.TextCell>
                 <Table.TextCell>
                   {report.outcome_status.category}
                 </Table.TextCell>
               </Table.Row>
             ))}
+
           {isBottom && (
             <Pane>
               <Spinner size={50} marginX="auto" marginY={10} />

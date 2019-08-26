@@ -16,12 +16,12 @@ class App extends Component {
       forceOptions: null,
       category: '',
       force: '',
-      categoryError: false,
-      forceError: false,
       year: new Date().getFullYear(),
       month: new Date().getMonth() + 1,
-      reports: null,
-      fetchingReports: false
+      categoryIsInvalid: false,
+      forceIsInvalid: false,
+      fetchingReports: false,
+      reports: null
     };
 
     this.handleSelect = this.handleSelect.bind(this);
@@ -53,21 +53,21 @@ class App extends Component {
     const { category, force, year, month } = this.state;
     // console.log(category, force);
 
-    let categoryError = false;
-    let forceError = false;
+    let categoryIsInvalid = false;
+    let forceIsInvalid = false;
 
     if (category === '') {
-      categoryError = true;
+      categoryIsInvalid = true;
     }
     if (force === '') {
-      forceError = true;
+      forceIsInvalid = true;
     }
 
-    if (categoryError || forceError) {
-      return this.setState({ categoryError, forceError });
+    if (categoryIsInvalid || forceIsInvalid) {
+      return this.setState({ categoryIsInvalid, forceIsInvalid });
     }
 
-    this.setState({ categoryError, forceError, fetchingReports: true });
+    this.setState({ categoryIsInvalid, forceIsInvalid, fetchingReports: true });
 
     setTimeout(() => {
       crimeReports(category, force, year, month)
@@ -85,16 +85,11 @@ class App extends Component {
       isLoading,
       categoryOptions,
       forceOptions,
-      // category,
-      // force,
-      categoryError,
-      forceError,
-      reports,
-      fetchingReports
+      categoryIsInvalid,
+      forceIsInvalid,
+      fetchingReports,
+      reports
     } = this.state;
-
-    // console.log(reports);
-    // console.log('===>', category, force);
 
     if (isLoading) {
       return <Loader />;
@@ -106,12 +101,12 @@ class App extends Component {
         <Main
           categoryOptions={categoryOptions}
           forceOptions={forceOptions}
-          categoryError={categoryError}
-          forceError={forceError}
+          categoryIsInvalid={categoryIsInvalid}
+          forceIsInvalid={forceIsInvalid}
           handleSelect={this.handleSelect}
           getCrimeReports={this.getCrimeReports}
         />
-        <DataTable reports={reports} fetchingReports={fetchingReports} />
+        <DataTable fetchingReports={fetchingReports} reports={reports} />
       </Fragment>
     );
   }

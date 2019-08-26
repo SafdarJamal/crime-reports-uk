@@ -1,15 +1,15 @@
 import React from 'react';
 import { Pane, Paragraph, Alert } from 'evergreen-ui';
 
-import CustomSelect from './CustomSelect';
-import CustomButton from './CustomButton';
+import CustomSelect from './UI/CustomSelect';
+import CustomButton from './UI/CustomButton';
 
 function Main(props) {
   const {
     categoryOptions,
     forceOptions,
-    categoryError,
-    forceError,
+    categoryIsInvalid,
+    forceIsInvalid,
     handleSelect,
     getCrimeReports
   } = props;
@@ -43,16 +43,18 @@ function Main(props) {
       border="default"
       borderRadius={8}
     >
-      {categoryError && (
+      {categoryIsInvalid && (
         <Alert intent="danger" title="Please Select Crime Category !" />
       )}
-      {forceError && (
+
+      {forceIsInvalid && (
         <Alert
           intent="danger"
           title="Please Select Police Force !"
           marginBottom={25}
         />
       )}
+
       <CustomSelect
         height={50}
         width="100%"
@@ -67,6 +69,7 @@ function Main(props) {
           </option>
         ))}
       </CustomSelect>
+
       <CustomSelect
         height={50}
         width="100%"
@@ -81,6 +84,7 @@ function Main(props) {
           </option>
         ))}
       </CustomSelect>
+
       <CustomSelect height={50} width="50%" name="year" onChange={handleSelect}>
         <option value={date.getFullYear()}>Select Year (Optional)</option>
         {years.map((year, i) => (
@@ -89,6 +93,7 @@ function Main(props) {
           </option>
         ))}
       </CustomSelect>
+
       <CustomSelect
         height={50}
         width="50%"
@@ -102,13 +107,15 @@ function Main(props) {
           </option>
         ))}
       </CustomSelect>
+
       <Paragraph size={500} marginTop={10} marginBottom={25}>
         Limit results to a specific month. The latest month will be shown by
         default
       </Paragraph>
+
       <CustomButton
+        type="primary"
         text="Search"
-        intent="success"
         marginTop={25}
         iconBefore="search"
         onClick={getCrimeReports}
