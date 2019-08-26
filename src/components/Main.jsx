@@ -15,7 +15,7 @@ function Main(props) {
   } = props;
 
   const date = new Date();
-  const years = [2017, 2018, 2019];
+  const years = [2019, 2018, 2017];
   const months = [
     'January',
     'February',
@@ -95,9 +95,9 @@ function Main(props) {
         name="month"
         onChange={handleSelect}
       >
-        <option value={date.getMonth()}>Select Month (Optional)</option>
+        <option value={date.getMonth() + 1}>Select Month (Optional)</option>
         {months.map((months, i) => (
-          <option key={i + 1} value={i}>
+          <option key={i + 1} value={i + 1}>
             {months}
           </option>
         ))}

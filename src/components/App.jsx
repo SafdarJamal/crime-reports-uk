@@ -19,7 +19,7 @@ class App extends Component {
       categoryError: false,
       forceError: false,
       year: new Date().getFullYear(),
-      month: new Date().getMonth(),
+      month: new Date().getMonth() + 1,
       reports: null,
       fetchingReports: false
     };

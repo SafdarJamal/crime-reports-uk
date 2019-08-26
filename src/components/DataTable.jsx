@@ -39,6 +39,7 @@ class DataTable extends React.Component {
   render() {
     const { listNumber, isBottom } = this.state;
     const { reports, fetchingReports } = this.props;
+    console.log(reports);
 
     let controlledList;
 
