@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, Text, Pane, Spinner, Dialog } from 'evergreen-ui';
+import { copyToClipboard } from 'copy-lite';
 
 class DataTable extends React.Component {
   constructor(props) {
@@ -66,7 +67,7 @@ class DataTable extends React.Component {
           hasHeader={false}
           confirmLabel="Copy"
           onConfirm={close =>
-            console.log(controlledList[dialogID].persistent_id)
+            copyToClipboard(controlledList[dialogID].persistent_id)
           }
         >
           <Text>
