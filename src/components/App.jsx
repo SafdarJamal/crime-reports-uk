@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { categories, forces, crimeReports } from '../api/UK_POLICE';
 
-import Loader from './Loader';
+import Loader from './UI/Loader';
 import Header from './Header';
 import Main from './Main';
 import DataTable from './DataTable';
