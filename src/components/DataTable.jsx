@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Text, Pane, Spinner, toaster } from 'evergreen-ui';
+import { Table, Text, Pane, Spinner, Dialog } from 'evergreen-ui';
 
 class DataTable extends React.Component {
   constructor(props) {
@@ -7,7 +7,9 @@ class DataTable extends React.Component {
 
     this.state = {
       listNumber: 15,
-      isBottom: false
+      isBottom: false,
+      isDialogShown: false,
+      dialogID: null
     };
 
     this.handleScroll = this.handleScroll.bind(this);
@@ -37,9 +39,9 @@ class DataTable extends React.Component {
   }
 
   render() {
-    const { listNumber, isBottom } = this.state;
+    const { listNumber, isBottom, isDialogShown, dialogID } = this.state;
     const { reports, fetchingReports } = this.props;
-    console.log(reports);
+    // console.log(reports);
 
     let controlledList;
 
@@ -58,6 +60,19 @@ class DataTable extends React.Component {
         marginBottom={25}
         borderRadius={8}
       >
+        <Dialog
+          isShown={isDialogShown}
+          onCloseComplete={() => this.setState({ isDialogShown: false })}
+          hasHeader={false}
+          confirmLabel="Copy"
+          onConfirm={close =>
+            console.log(controlledList[dialogID].persistent_id)
+          }
+        >
+          <Text>
+            Crime_ID: {isDialogShown && controlledList[dialogID].persistent_id}
+          </Text>
+        </Dialog>
         <Table.Head>
           <Table.TextHeaderCell>NO.</Table.TextHeaderCell>
           <Table.TextHeaderCell>ID</Table.TextHeaderCell>
@@ -89,9 +104,10 @@ class DataTable extends React.Component {
                 key={i}
                 isSelectable
                 onSelect={() =>
-                  toaster.notify(report.outcome_status.category, {
-                    id: i
-                  })
+                  // toaster.notify(report.outcome_status.category, {
+                  //   id: i
+                  // })
+                  this.setState({ isDialogShown: true, dialogID: i })
                 }
               >
                 <Table.TextCell>{i + 1}</Table.TextCell>
