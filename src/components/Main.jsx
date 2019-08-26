@@ -41,17 +41,22 @@ function Main(props) {
       alignItems="center"
       justifyContent="center"
       border="default"
+      borderRadius={8}
     >
       {categoryError && (
         <Alert intent="danger" title="Please Select Crime Category !" />
       )}
       {forceError && (
-        <Alert intent="danger" title="Please Select Police Force !" />
+        <Alert
+          intent="danger"
+          title="Please Select Police Force !"
+          marginBottom={25}
+        />
       )}
       <CustomSelect
         height={50}
         width="100%"
-        marginTop={25}
+        marginBottom={25}
         name="category"
         onChange={handleSelect}
       >
@@ -65,7 +70,7 @@ function Main(props) {
       <CustomSelect
         height={50}
         width="100%"
-        marginTop={25}
+        marginBottom={25}
         name="force"
         onChange={handleSelect}
       >
@@ -76,13 +81,7 @@ function Main(props) {
           </option>
         ))}
       </CustomSelect>
-      <CustomSelect
-        height={50}
-        width="50%"
-        marginTop={25}
-        name="year"
-        onChange={handleSelect}
-      >
+      <CustomSelect height={50} width="50%" name="year" onChange={handleSelect}>
         <option value={date.getFullYear()}>Select Year (Optional)</option>
         {years.map((year, i) => (
           <option key={i + 1} value={year}>
@@ -93,7 +92,6 @@ function Main(props) {
       <CustomSelect
         height={50}
         width="50%"
-        marginTop={25}
         name="month"
         onChange={handleSelect}
       >
@@ -104,13 +102,12 @@ function Main(props) {
           </option>
         ))}
       </CustomSelect>
-      <Paragraph size={500} marginTop={10}>
+      <Paragraph size={500} marginTop={10} marginBottom={25}>
         Limit results to a specific month. The latest month will be shown by
         default
       </Paragraph>
       <CustomButton
         text="Search"
-        // type="primary"
         intent="success"
         marginTop={25}
         iconBefore="search"

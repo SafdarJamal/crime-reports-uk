@@ -9,7 +9,7 @@ function Header() {
       padding={14}
       marginTop={10}
       background="overlay"
-      // borderRadius={12}
+      borderRadius={8}
     >
       <Pane flex={1} alignItems="center" display="flex">
         <Avatar name="Crime Reports" size={40} marginRight={12} />

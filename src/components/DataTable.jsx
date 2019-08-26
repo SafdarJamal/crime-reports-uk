@@ -55,6 +55,7 @@ class DataTable extends React.Component {
         elevation={1}
         marginTop={25}
         marginBottom={25}
+        borderRadius={8}
       >
         <Table.Head>
           <Table.TextHeaderCell>NO.</Table.TextHeaderCell>

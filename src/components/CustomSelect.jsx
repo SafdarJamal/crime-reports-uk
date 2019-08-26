@@ -2,13 +2,13 @@ import React from 'react';
 import { Select } from 'evergreen-ui';
 
 function CustomSelect(props) {
-  const { height, width, marginTop, name, onChange } = props;
+  const { height, width, marginBottom, name, onChange } = props;
 
   return (
     <Select
       height={height}
       width={width}
-      marginTop={marginTop}
+      marginBottom={marginBottom}
       onChange={event => onChange(name, event.target.value)}
     >
       {props.children}
