@@ -1,8 +1,8 @@
 import React from 'react';
 import { Pane, Paragraph, Alert } from 'evergreen-ui';
 
-import CustomSelect from './UI/CustomSelect';
-import CustomButton from './UI/CustomButton';
+import CustomSelect from '../UI/CustomSelect';
+import CustomButton from '../UI/CustomButton';
 
 function Main(props) {
   const {
