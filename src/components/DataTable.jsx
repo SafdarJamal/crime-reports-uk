@@ -48,6 +48,7 @@ class DataTable extends React.Component {
       dialogID,
       isCopied
     } = this.state;
+
     const { fetchingReports, reports } = this.props;
     // console.log(reports);
 
