@@ -17,7 +17,7 @@ class App extends Component {
       category: '',
       force: '',
       year: new Date().getFullYear(),
-      month: new Date().getMonth() + 1,
+      month: new Date().getMonth() === 0 ? 1 : new Date().getMonth(),
       categoryIsInvalid: false,
       forceIsInvalid: false,
       fetchingReports: false,
