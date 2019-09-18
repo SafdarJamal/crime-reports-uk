@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, majorScale } from 'evergreen-ui';
 
-function CustomButton(props) {
+const CustomButton = props => {
   const { text, type, marginBottom, iconBefore, onClick } = props;
 
   return (
@@ -15,6 +15,6 @@ function CustomButton(props) {
       {text}
     </Button>
   );
-}
+};
 
 export default CustomButton;

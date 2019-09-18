@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pane, Spinner } from 'evergreen-ui';
 
-function Loader() {
+const Loader = () => {
   return (
     <Pane
       display="flex"
@@ -12,6 +12,6 @@ function Loader() {
       <Spinner size={100} />
     </Pane>
   );
-}
+};
 
 export default Loader;

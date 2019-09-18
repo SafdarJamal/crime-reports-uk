@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select } from 'evergreen-ui';
 
-function CustomSelect(props) {
+const CustomSelect = props => {
   const { children, height, width, marginBottom, name, onChange } = props;
 
   return (
@@ -14,6 +14,6 @@ function CustomSelect(props) {
       {children}
     </Select>
   );
-}
+};
 
 export default CustomSelect;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pane, Avatar, Heading } from 'evergreen-ui';
 
-function Header() {
+const Header = () => {
   return (
     <Pane
       elevation={1}
@@ -19,6 +19,6 @@ function Header() {
       </Pane>
     </Pane>
   );
-}
+};
 
 export default Header;

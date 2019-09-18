@@ -4,7 +4,7 @@ import { Pane, Paragraph, Alert } from 'evergreen-ui';
 import CustomSelect from '../UI/CustomSelect';
 import CustomButton from '../UI/CustomButton';
 
-function Main(props) {
+const Main = props => {
   const {
     categoryOptions,
     forceOptions,
@@ -122,6 +122,6 @@ function Main(props) {
       />
     </Pane>
   );
-}
+};
 
 export default Main;

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Table, Text, Pane, Spinner, Dialog } from 'evergreen-ui';
 import { copyToClipboard } from 'copy-lite';
 
-class DataTable extends React.Component {
+class DataTable extends Component {
   constructor(props) {
     super(props);
 
