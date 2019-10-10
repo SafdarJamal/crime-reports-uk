@@ -7,10 +7,8 @@ This is the App for Open Data about Crime and Policing in England, Wales and Nor
 To get a local copy of the code, clone it using git:
 
 ```
-git clone https://github.com/SafdarJamal/hacker-news.git
-
-# step into local repo
-cd hacker-news
+git clone https://github.com/SafdarJamal/crime-reports-uk.git
+cd crime-reports-uk
 ```
 
 Install dependencies:
