@@ -1,7 +1,12 @@
 import React from 'react';
-import { Pane, Alert, Select, Paragraph } from 'evergreen-ui';
-
-import CustomButton from '../UI/CustomButton';
+import {
+  Pane,
+  Alert,
+  Select,
+  Paragraph,
+  Button,
+  majorScale
+} from 'evergreen-ui';
 
 const Main = props => {
   const {
@@ -117,13 +122,14 @@ const Main = props => {
         default
       </Paragraph>
 
-      <CustomButton
-        type="primary"
-        text="Search"
-        marginTop={25}
+      <Button
+        appearance="primary"
         iconBefore="search"
+        height={majorScale(5)}
         onClick={getCrimeReports}
-      />
+      >
+        Search
+      </Button>
     </Pane>
   );
 };
