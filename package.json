@@ -1,6 +1,6 @@
 {
   "name": "crime-reports-uk",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "copy-lite": "^0.1.2",
