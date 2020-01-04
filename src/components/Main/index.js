@@ -1,7 +1,6 @@
 import React from 'react';
-import { Pane, Paragraph, Alert } from 'evergreen-ui';
+import { Pane, Alert, Select, Paragraph } from 'evergreen-ui';
 
-import CustomSelect from '../UI/CustomSelect';
 import CustomButton from '../UI/CustomButton';
 
 const Main = props => {
@@ -55,12 +54,12 @@ const Main = props => {
         />
       )}
 
-      <CustomSelect
+      <Select
         height={50}
         width="100%"
         marginBottom={25}
         name="category"
-        onChange={handleSelect}
+        onChange={event => handleSelect(event.target.name, event.target.value)}
       >
         <option value="">Select Crime Category (Required)</option>
         {categoryOptions.map((item, i) => (
@@ -68,14 +67,14 @@ const Main = props => {
             {item.name}
           </option>
         ))}
-      </CustomSelect>
+      </Select>
 
-      <CustomSelect
+      <Select
         height={50}
         width="100%"
         marginBottom={25}
         name="force"
-        onChange={handleSelect}
+        onChange={event => handleSelect(event.target.name, event.target.value)}
       >
         <option value="">Select Police Force (Required)</option>
         {forceOptions.map((item, i) => (
@@ -83,22 +82,27 @@ const Main = props => {
             {item.name}
           </option>
         ))}
-      </CustomSelect>
+      </Select>
 
-      <CustomSelect height={50} width="50%" name="year" onChange={handleSelect}>
+      <Select
+        height={50}
+        width="50%"
+        name="year"
+        onChange={event => handleSelect(event.target.name, event.target.value)}
+      >
         <option value={date.getFullYear()}>Select Year (Optional)</option>
         {years.map((year, i) => (
           <option key={i + 1} value={year}>
             {year}
           </option>
         ))}
-      </CustomSelect>
+      </Select>
 
-      <CustomSelect
+      <Select
         height={50}
         width="50%"
         name="month"
-        onChange={handleSelect}
+        onChange={event => handleSelect(event.target.name, event.target.value)}
       >
         <option value={date.getMonth() + 1}>Select Month (Optional)</option>
         {months.map((months, i) => (
@@ -106,7 +110,7 @@ const Main = props => {
             {months}
           </option>
         ))}
-      </CustomSelect>
+      </Select>
 
       <Paragraph size={500} marginTop={10} marginBottom={25}>
         Limit results to a specific month. The latest month will be shown by
