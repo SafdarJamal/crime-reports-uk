@@ -29,19 +29,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    categories()
-      .then(categoryOptions => {
-        forces()
-          .then(forceOptions => {
-            this.setState({
-              categoryOptions,
-              forceOptions,
-              isLoading: false
-            });
-          })
-          .catch(error => console.log(`Getting Forces ==> ${error.message}`));
+    Promise.all([categories(), forces()])
+      .then(([categoryOptions, forceOptions]) => {
+        this.setState({
+          categoryOptions,
+          forceOptions,
+          isLoading: false
+        });
       })
-      .catch(error => console.log(`Getting Categories ==> ${error.message}`));
+      .catch(error => {
+        console.log(error.message);
+      });
   }
 
   handleSelect(name, value) {
