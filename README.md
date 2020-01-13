@@ -34,4 +34,4 @@ npm start
 
 ## License
 
-This is an open source software [licensed as MIT](https://github.com/SafdarJamal/crime-reports-uk/blob/master/LICENSE).
+Crime Reports UK is open source software [licensed as MIT](https://github.com/SafdarJamal/crime-reports-uk/blob/master/LICENSE).
