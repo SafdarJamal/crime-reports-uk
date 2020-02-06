@@ -50,7 +50,6 @@ class DataTable extends Component {
     } = this.state;
 
     const { fetchingReports, reports } = this.props;
-    // console.log(reports);
 
     let controlledList;
 

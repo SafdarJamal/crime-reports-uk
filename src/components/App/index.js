@@ -43,13 +43,11 @@ class App extends Component {
   }
 
   handleSelect(name, value) {
-    // console.log(name, value);
     this.setState({ [name]: value });
   }
 
   getCrimeReports() {
     const { category, force, year, month } = this.state;
-    // console.log(category, force);
 
     let categoryIsInvalid = false;
     let forceIsInvalid = false;
