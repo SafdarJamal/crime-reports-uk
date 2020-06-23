@@ -1,6 +1,6 @@
 {
-  "short_name": "Crime Reports",
-  "name": "Crime Reports UK",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
