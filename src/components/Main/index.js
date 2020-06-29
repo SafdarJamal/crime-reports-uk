@@ -14,7 +14,10 @@ const Main = props => {
     forceOptions,
     categoryIsInvalid,
     forceIsInvalid,
-    handleSelect,
+    setCategory,
+    setForce,
+    setYear,
+    setMonth,
     getCrimeReports
   } = props;
 
@@ -64,7 +67,7 @@ const Main = props => {
         width="100%"
         marginBottom={25}
         name="category"
-        onChange={event => handleSelect(event.target.name, event.target.value)}
+        onChange={event => setCategory(event.target.value)}
       >
         <option value="">Select Crime Category (Required)</option>
         {categoryOptions.map((item, i) => (
@@ -79,7 +82,7 @@ const Main = props => {
         width="100%"
         marginBottom={25}
         name="force"
-        onChange={event => handleSelect(event.target.name, event.target.value)}
+        onChange={event => setForce(event.target.value)}
       >
         <option value="">Select Police Force (Required)</option>
         {forceOptions.map((item, i) => (
@@ -93,7 +96,7 @@ const Main = props => {
         height={50}
         width="50%"
         name="year"
-        onChange={event => handleSelect(event.target.name, event.target.value)}
+        onChange={event => setYear(event.target.value)}
       >
         <option value={date.getFullYear()}>Select Year (Optional)</option>
         {years.map((year, i) => (
@@ -107,7 +110,7 @@ const Main = props => {
         height={50}
         width="50%"
         name="month"
-        onChange={event => handleSelect(event.target.name, event.target.value)}
+        onChange={event => setMonth(event.target.value)}
       >
         <option value={date.getMonth() + 1}>Select Month (Optional)</option>
         {months.map((months, i) => (
