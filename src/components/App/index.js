@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { categories, forces, crimeReports } from '../../api/UK_POLICE';
+import React, { useState } from 'react';
+import { crimeReports } from '../../api/UK_POLICE';
 
 import Header from '../Header';
 import Main from '../Main';
 import DataTable from '../DataTable';
 import Loader from '../Loader';
 
+import useCategoriesAndForces from '../../hooks/useCategoriesAndForces';
+
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [categoryOptions, setCategoryOptions] = useState(null);
-  const [forceOptions, setForceOptions] = useState(null);
+  const [isLoading, categoryOptions, forceOptions] = useCategoriesAndForces();
   const [category, setCategory] = useState('');
   const [force, setForce] = useState('');
   const [year, setYear] = useState(new Date().getFullYear());
@@ -20,18 +20,6 @@ const App = () => {
   const [forceIsInvalid, setForceIsInvalid] = useState(false);
   const [fetchingReports, setFetchingReports] = useState(false);
   const [reports, setReports] = useState(null);
-
-  useEffect(() => {
-    Promise.all([categories(), forces()])
-      .then(([categoryOptions, forceOptions]) => {
-        setCategoryOptions(categoryOptions);
-        setForceOptions(forceOptions);
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
-  }, []);
 
   const getCrimeReports = () => {
     let categoryIsInvalid = false;
