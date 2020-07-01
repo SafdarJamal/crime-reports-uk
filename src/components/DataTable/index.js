@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Table, Text, Pane, Spinner, Dialog } from 'evergreen-ui';
 import { copyToClipboard } from 'copy-lite';
 
@@ -118,6 +119,11 @@ const DataTable = ({ fetchingReports, reports }) => {
       </Table.Body>
     </Table>
   );
+};
+
+DataTable.propTypes = {
+  fetchingReports: PropTypes.bool.isRequired,
+  reports: PropTypes.array.isRequired
 };
 
 export default DataTable;
