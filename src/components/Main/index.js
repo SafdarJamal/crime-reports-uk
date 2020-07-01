@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Pane,
   Alert,
@@ -135,6 +136,18 @@ const Main = props => {
       </Button>
     </Pane>
   );
+};
+
+Main.propTypes = {
+  categoryOptions: PropTypes.array.isRequired,
+  forceOptions: PropTypes.array.isRequired,
+  categoryIsInvalid: PropTypes.bool.isRequired,
+  forceIsInvalid: PropTypes.bool.isRequired,
+  setCategory: PropTypes.func.isRequired,
+  setForce: PropTypes.func.isRequired,
+  setYear: PropTypes.func.isRequired,
+  setMonth: PropTypes.func.isRequired,
+  getCrimeReports: PropTypes.func.isRequired
 };
 
 export default Main;
