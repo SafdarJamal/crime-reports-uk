@@ -9,21 +9,19 @@ import {
   majorScale
 } from 'evergreen-ui';
 
-const Main = props => {
-  const {
-    categoryOptions,
-    forceOptions,
-    categoryIsInvalid,
-    forceIsInvalid,
-    setCategory,
-    setForce,
-    setYear,
-    setMonth,
-    getCrimeReports
-  } = props;
-
+const Main = ({
+  categoryOptions,
+  forceOptions,
+  categoryIsInvalid,
+  forceIsInvalid,
+  setCategory,
+  setForce,
+  setYear,
+  setMonth,
+  getCrimeReports
+}) => {
   const date = new Date();
-  const years = [2019, 2018, 2017];
+  const years = [2020, 2019, 2018, 2017];
   const months = [
     'January',
     'February',
@@ -52,13 +50,13 @@ const Main = props => {
       borderRadius={8}
     >
       {categoryIsInvalid && (
-        <Alert intent="danger" title="Please Select Crime Category !" />
+        <Alert intent="danger" title="Please select crime category!" />
       )}
 
       {forceIsInvalid && (
         <Alert
           intent="danger"
-          title="Please Select Police Force !"
+          title="Please select police force!"
           marginBottom={25}
         />
       )}
@@ -123,7 +121,7 @@ const Main = props => {
 
       <Paragraph size={500} marginTop={10} marginBottom={25}>
         Limit results to a specific month. The latest month will be shown by
-        default
+        default.
       </Paragraph>
 
       <Button
