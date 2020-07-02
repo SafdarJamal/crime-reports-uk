@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { crimeReports } from '../../api/UK_POLICE';
 
 import Header from '../Header';
 import Main from '../Main';
@@ -9,48 +8,37 @@ import Loader from '../Loader';
 import useCategoriesAndForces from '../../hooks/useCategoriesAndForces';
 
 const App = () => {
+  const date = new Date();
+
   const [isLoading, categoryOptions, forceOptions] = useCategoriesAndForces();
   const [category, setCategory] = useState('');
   const [force, setForce] = useState('');
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [month, setMonth] = useState(
-    new Date().getMonth() === 0 ? 1 : new Date().getMonth()
-  );
+  const [year, setYear] = useState(date.getFullYear());
+  const [month, setMonth] = useState(date.getMonth() + 1);
   const [categoryIsInvalid, setCategoryIsInvalid] = useState(false);
   const [forceIsInvalid, setForceIsInvalid] = useState(false);
   const [fetchingReports, setFetchingReports] = useState(false);
-  const [reports, setReports] = useState(null);
+  const [reports, setReports] = useState([]);
 
   const getCrimeReports = () => {
-    let categoryIsInvalid = false;
-    let forceIsInvalid = false;
-
-    if (category === '') {
-      categoryIsInvalid = true;
-    }
-    if (force === '') {
-      forceIsInvalid = true;
-    }
-
-    if (categoryIsInvalid || forceIsInvalid) {
-      setCategoryIsInvalid(categoryIsInvalid);
-      setForceIsInvalid(forceIsInvalid);
+    if (!category && !force) {
+      setCategoryIsInvalid(true);
+      setForceIsInvalid(true);
       return;
     }
 
-    setCategoryIsInvalid(categoryIsInvalid);
-    setForceIsInvalid(forceIsInvalid);
+    setCategoryIsInvalid(false);
+    setForceIsInvalid(false);
     setFetchingReports(true);
 
     setTimeout(() => {
-      crimeReports(category, force, year, month)
-        .then(reports => {
-          setReports(reports);
-          fetchingReports(false);
-        })
-        .catch(error =>
-          console.log(`Getting Crime Reports ==> ${error.message}`)
-        );
+      fetch(
+        `https://data.police.uk/api/crimes-no-location?category=${category}&force=${force}&date=${year}-${month}`
+      )
+        .then(response => response.json())
+        .then(reports => setReports(reports))
+        .then(() => fetchingReports(false))
+        .catch(error => console.log(error.message));
     }, 1000);
   };
 
