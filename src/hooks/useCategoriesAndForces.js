@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { categories, forces } from '../api/UK_POLICE';
+import { getCategories, getForces } from '../api';
 
 const useCategoriesAndForces = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [categoryOptions, setCategoryOptions] = useState(null);
-  const [forceOptions, setForceOptions] = useState(null);
+  const [categoryOptions, setCategoryOptions] = useState([]);
+  const [forceOptions, setForceOptions] = useState([]);
 
   useEffect(() => {
-    Promise.all([categories(), forces()])
+    Promise.all([getCategories(), getForces()])
       .then(([categoryOptions, forceOptions]) => {
         setCategoryOptions(categoryOptions);
         setForceOptions(forceOptions);
