@@ -6,6 +6,7 @@ import DataTable from '../DataTable';
 import Loader from '../Loader';
 
 import useCategoriesAndForces from '../../hooks/useCategoriesAndForces';
+import { getCrimeReports } from '../../api';
 
 const App = () => {
   const date = new Date();
@@ -20,7 +21,7 @@ const App = () => {
   const [fetchingReports, setFetchingReports] = useState(false);
   const [reports, setReports] = useState([]);
 
-  const getCrimeReports = () => {
+  const handleSearch = () => {
     if (!category && !force) {
       setCategoryIsInvalid(true);
       setForceIsInvalid(true);
@@ -32,19 +33,14 @@ const App = () => {
     setFetchingReports(true);
 
     setTimeout(() => {
-      fetch(
-        `https://data.police.uk/api/crimes-no-location?category=${category}&force=${force}&date=${year}-${month}`
-      )
-        .then(response => response.json())
+      getCrimeReports(category, force, year, month)
         .then(reports => setReports(reports))
         .then(() => fetchingReports(false))
         .catch(error => console.log(error.message));
     }, 1000);
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  if (isLoading) return <Loader />;
 
   return (
     <>
@@ -58,7 +54,7 @@ const App = () => {
         setForce={setForce}
         setYear={setYear}
         setMonth={setMonth}
-        getCrimeReports={getCrimeReports}
+        handleSearch={handleSearch}
       />
       <DataTable fetchingReports={fetchingReports} reports={reports} />
     </>

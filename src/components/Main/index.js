@@ -18,7 +18,7 @@ const Main = ({
   setForce,
   setYear,
   setMonth,
-  getCrimeReports
+  handleSearch
 }) => {
   const date = new Date();
   const years = [2020, 2019, 2018, 2017];
@@ -128,7 +128,7 @@ const Main = ({
         appearance="primary"
         iconBefore="search"
         height={majorScale(5)}
-        onClick={getCrimeReports}
+        onClick={handleSearch}
       >
         Search
       </Button>
@@ -145,7 +145,7 @@ Main.propTypes = {
   setForce: PropTypes.func.isRequired,
   setYear: PropTypes.func.isRequired,
   setMonth: PropTypes.func.isRequired,
-  getCrimeReports: PropTypes.func.isRequired
+  handleSearch: PropTypes.func.isRequired
 };
 
 export default Main;
