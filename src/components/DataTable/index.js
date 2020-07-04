@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Table, Text, Pane, Spinner, Dialog } from 'evergreen-ui';
 import { copyToClipboard } from 'copy-lite';
 
-const DataTable = ({ fetchingReports, reports }) => {
+const DataTable = ({ isFetching, reports }) => {
   const [listNumber, setListNumber] = useState(15);
   const [isBottom, setIsBottom] = useState(false);
   const [isDialogShown, setIsDialogShown] = useState(false);
@@ -76,23 +76,23 @@ const DataTable = ({ fetchingReports, reports }) => {
       </Table.Head>
 
       <Table.Body height={475}>
-        {fetchingReports && (
+        {isFetching && (
           <Pane>
             <Spinner size={50} marginX="auto" marginY={10} />
           </Pane>
         )}
 
-        {!fetchingReports && controlledList && controlledList[0] === undefined && (
+        {!isFetching && controlledList && controlledList[0] === undefined && (
           <Table.Row>
             <Table.TextCell>
               <Text size={600} marginLeft={10}>
-                There is no report available.
+                There is no reports available.
               </Text>
             </Table.TextCell>
           </Table.Row>
         )}
 
-        {!fetchingReports &&
+        {!isFetching &&
           controlledList &&
           controlledList[0] !== undefined &&
           controlledList.map((report, i) => (
@@ -122,7 +122,7 @@ const DataTable = ({ fetchingReports, reports }) => {
 };
 
 DataTable.propTypes = {
-  fetchingReports: PropTypes.bool.isRequired,
+  isFetching: PropTypes.bool.isRequired,
   reports: PropTypes.array.isRequired
 };
 

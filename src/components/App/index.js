@@ -18,7 +18,7 @@ const App = () => {
   const [month, setMonth] = useState(date.getMonth() + 1);
   const [categoryIsInvalid, setCategoryIsInvalid] = useState(false);
   const [forceIsInvalid, setForceIsInvalid] = useState(false);
-  const [fetchingReports, setFetchingReports] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   const [reports, setReports] = useState([]);
 
   const handleSearch = () => {
@@ -30,12 +30,12 @@ const App = () => {
 
     setCategoryIsInvalid(false);
     setForceIsInvalid(false);
-    setFetchingReports(true);
+    setIsFetching(true);
 
     setTimeout(() => {
       getCrimeReports(category, force, year, month)
         .then(reports => setReports(reports))
-        .then(() => fetchingReports(false))
+        .then(() => setIsFetching(false))
         .catch(error => console.log(error.message));
     }, 1000);
   };
@@ -56,7 +56,7 @@ const App = () => {
         setMonth={setMonth}
         handleSearch={handleSearch}
       />
-      <DataTable fetchingReports={fetchingReports} reports={reports} />
+      <DataTable isFetching={isFetching} reports={reports} />
     </>
   );
 };
