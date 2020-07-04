@@ -12,13 +12,15 @@ import {
 const Main = ({
   categoryOptions,
   forceOptions,
-  categoryIsInvalid,
-  forceIsInvalid,
   setCategory,
   setForce,
   setYear,
   setMonth,
-  handleSearch
+  handleSearch,
+  categoryIsInvalid,
+  setCategoryIsInvalid,
+  forceIsInvalid,
+  setForceIsInvalid
 }) => {
   const date = new Date();
   const years = [2020, 2019, 2018, 2017];
@@ -50,7 +52,13 @@ const Main = ({
       borderRadius={8}
     >
       {categoryIsInvalid && (
-        <Alert intent="danger" title="Please select crime category!" />
+        <Alert
+          intent="danger"
+          title="Please select crime category!"
+          marginBottom={25}
+          isRemoveable={true}
+          onRemove={() => setCategoryIsInvalid(false)}
+        />
       )}
 
       {forceIsInvalid && (
@@ -58,6 +66,8 @@ const Main = ({
           intent="danger"
           title="Please select police force!"
           marginBottom={25}
+          isRemoveable={true}
+          onRemove={() => setForceIsInvalid(false)}
         />
       )}
 
@@ -139,13 +149,15 @@ const Main = ({
 Main.propTypes = {
   categoryOptions: PropTypes.array.isRequired,
   forceOptions: PropTypes.array.isRequired,
-  categoryIsInvalid: PropTypes.bool.isRequired,
-  forceIsInvalid: PropTypes.bool.isRequired,
   setCategory: PropTypes.func.isRequired,
   setForce: PropTypes.func.isRequired,
   setYear: PropTypes.func.isRequired,
   setMonth: PropTypes.func.isRequired,
-  handleSearch: PropTypes.func.isRequired
+  handleSearch: PropTypes.func.isRequired,
+  categoryIsInvalid: PropTypes.bool.isRequired,
+  setCategoryIsInvalid: PropTypes.func.isRequired,
+  forceIsInvalid: PropTypes.bool.isRequired,
+  setForceIsInvalid: PropTypes.func.isRequired
 };
 
 export default Main;

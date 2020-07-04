@@ -22,11 +22,8 @@ const App = () => {
   const [reports, setReports] = useState([]);
 
   const handleSearch = () => {
-    if (!category && !force) {
-      setCategoryIsInvalid(true);
-      setForceIsInvalid(true);
-      return;
-    }
+    if (!category) return setCategoryIsInvalid(true);
+    if (!force) return setForceIsInvalid(true);
 
     setCategoryIsInvalid(false);
     setForceIsInvalid(false);
@@ -48,13 +45,15 @@ const App = () => {
       <Main
         categoryOptions={categoryOptions}
         forceOptions={forceOptions}
-        categoryIsInvalid={categoryIsInvalid}
-        forceIsInvalid={forceIsInvalid}
         setCategory={setCategory}
         setForce={setForce}
         setYear={setYear}
         setMonth={setMonth}
         handleSearch={handleSearch}
+        categoryIsInvalid={categoryIsInvalid}
+        setCategoryIsInvalid={setCategoryIsInvalid}
+        forceIsInvalid={forceIsInvalid}
+        setForceIsInvalid={setForceIsInvalid}
       />
       <DataTable isFetching={isFetching} reports={reports} />
     </>
