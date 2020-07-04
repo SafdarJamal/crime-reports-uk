@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import Loader from '../Loader';
 import Header from '../Header';
 import Main from '../Main';
 import DataTable from '../DataTable';
-import Loader from '../Loader';
 
-import useCategoriesAndForces from '../../hooks/useCategoriesAndForces';
-import { getCrimeReports } from '../../api';
+import { getCategories, getForces, getCrimeReports } from '../../api';
 
 const App = () => {
   const date = new Date();
 
-  const [isLoading, categoryOptions, forceOptions] = useCategoriesAndForces();
+  const [isLoading, setIsLoading] = useState(true);
+  const [categoryOptions, setCategoryOptions] = useState([]);
+  const [forceOptions, setForceOptions] = useState([]);
   const [category, setCategory] = useState('');
   const [force, setForce] = useState('');
   const [year, setYear] = useState(date.getFullYear());
@@ -20,6 +21,16 @@ const App = () => {
   const [forceIsInvalid, setForceIsInvalid] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
   const [reports, setReports] = useState([]);
+
+  useEffect(() => {
+    Promise.all([getCategories(), getForces()])
+      .then(([categoryOptions, forceOptions]) => {
+        setCategoryOptions(categoryOptions);
+        setForceOptions(forceOptions);
+        setIsLoading(false);
+      })
+      .catch(error => console.log(error.message));
+  }, []);
 
   const handleSearch = () => {
     if (!category) return setCategoryIsInvalid(true);
