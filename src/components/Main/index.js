@@ -18,9 +18,10 @@ const Main = ({
   setMonth,
   handleSearch,
   categoryIsInvalid,
-  setCategoryIsInvalid,
   forceIsInvalid,
-  setForceIsInvalid
+  setCategoryIsInvalid,
+  setForceIsInvalid,
+  isFetching
 }) => {
   const date = new Date();
   const years = [2020, 2019, 2018, 2017];
@@ -51,97 +52,109 @@ const Main = ({
       border="default"
       borderRadius={8}
     >
-      {categoryIsInvalid && (
-        <Alert
-          intent="danger"
-          title="Please select crime category!"
+      <form>
+        {/* {categoryIsInvalid && (
+          <Alert
+            intent="danger"
+            title="Please select crime category!"
+            marginBottom={25}
+            isRemoveable={true}
+            onRemove={() => setCategoryIsInvalid(false)}
+          />
+        )}
+
+        {forceIsInvalid && (
+          <Alert
+            intent="danger"
+            title="Please select police force!"
+            marginBottom={25}
+            isRemoveable={true}
+            onRemove={() => setForceIsInvalid(false)}
+          />
+        )} */}
+
+        <Select
+          height={50}
+          width="100%"
           marginBottom={25}
-          isRemoveable={true}
-          onRemove={() => setCategoryIsInvalid(false)}
-        />
-      )}
+          name="category"
+          onChange={event => setCategory(event.target.value)}
+          isInvalid={categoryIsInvalid}
+          disabled={isFetching}
+          required
+        >
+          <option value="">Select Crime Category (Required)</option>
+          {categoryOptions.map((item, i) => (
+            <option key={i + 1} value={item.url}>
+              {item.name}
+            </option>
+          ))}
+        </Select>
 
-      {forceIsInvalid && (
-        <Alert
-          intent="danger"
-          title="Please select police force!"
+        <Select
+          height={50}
+          width="100%"
           marginBottom={25}
-          isRemoveable={true}
-          onRemove={() => setForceIsInvalid(false)}
-        />
-      )}
+          name="force"
+          onChange={event => setForce(event.target.value)}
+          isInvalid={forceIsInvalid}
+          disabled={isFetching}
+          required
+        >
+          <option value="">Select Police Force (Required)</option>
+          {forceOptions.map((item, i) => (
+            <option key={i + 1} value={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </Select>
 
-      <Select
-        height={50}
-        width="100%"
-        marginBottom={25}
-        name="category"
-        onChange={event => setCategory(event.target.value)}
-      >
-        <option value="">Select Crime Category (Required)</option>
-        {categoryOptions.map((item, i) => (
-          <option key={i + 1} value={item.url}>
-            {item.name}
-          </option>
-        ))}
-      </Select>
+        <Select
+          height={50}
+          width="100%"
+          marginBottom={25}
+          name="year"
+          onChange={event => setYear(event.target.value)}
+          disabled={isFetching}
+        >
+          <option value={date.getFullYear()}>Select Year (Optional)</option>
+          {years.map((year, i) => (
+            <option key={i + 1} value={year}>
+              {year}
+            </option>
+          ))}
+        </Select>
 
-      <Select
-        height={50}
-        width="100%"
-        marginBottom={25}
-        name="force"
-        onChange={event => setForce(event.target.value)}
-      >
-        <option value="">Select Police Force (Required)</option>
-        {forceOptions.map((item, i) => (
-          <option key={i + 1} value={item.id}>
-            {item.name}
-          </option>
-        ))}
-      </Select>
+        <Select
+          height={50}
+          width="100%"
+          name="month"
+          onChange={event => setMonth(event.target.value)}
+          disabled={isFetching}
+        >
+          <option value={date.getMonth() + 1}>Select Month (Optional)</option>
+          {months.map((months, i) => (
+            <option key={i + 1} value={i + 1}>
+              {months}
+            </option>
+          ))}
+        </Select>
 
-      <Select
-        height={50}
-        width="50%"
-        name="year"
-        onChange={event => setYear(event.target.value)}
-      >
-        <option value={date.getFullYear()}>Select Year (Optional)</option>
-        {years.map((year, i) => (
-          <option key={i + 1} value={year}>
-            {year}
-          </option>
-        ))}
-      </Select>
+        <Paragraph size={500} marginTop={10} marginBottom={25}>
+          Limit results to a specific month. The latest month will be shown by
+          default.
+        </Paragraph>
 
-      <Select
-        height={50}
-        width="50%"
-        name="month"
-        onChange={event => setMonth(event.target.value)}
-      >
-        <option value={date.getMonth() + 1}>Select Month (Optional)</option>
-        {months.map((months, i) => (
-          <option key={i + 1} value={i + 1}>
-            {months}
-          </option>
-        ))}
-      </Select>
-
-      <Paragraph size={500} marginTop={10} marginBottom={25}>
-        Limit results to a specific month. The latest month will be shown by
-        default.
-      </Paragraph>
-
-      <Button
-        appearance="primary"
-        iconBefore="search"
-        height={majorScale(5)}
-        onClick={handleSearch}
-      >
-        Search
-      </Button>
+        <Button
+          appearance="primary"
+          iconBefore="search"
+          height={majorScale(5)}
+          onClick={handleSearch}
+          disabled={isFetching}
+        >
+          Search
+        </Button>
+      </form>
     </Pane>
   );
 };
@@ -155,9 +168,10 @@ Main.propTypes = {
   setMonth: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired,
   categoryIsInvalid: PropTypes.bool.isRequired,
-  setCategoryIsInvalid: PropTypes.func.isRequired,
   forceIsInvalid: PropTypes.bool.isRequired,
-  setForceIsInvalid: PropTypes.func.isRequired
+  setCategoryIsInvalid: PropTypes.func.isRequired,
+  setForceIsInvalid: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired
 };
 
 export default Main;

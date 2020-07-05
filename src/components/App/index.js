@@ -62,9 +62,10 @@ const App = () => {
         setMonth={setMonth}
         handleSearch={handleSearch}
         categoryIsInvalid={categoryIsInvalid}
-        setCategoryIsInvalid={setCategoryIsInvalid}
         forceIsInvalid={forceIsInvalid}
+        setCategoryIsInvalid={setCategoryIsInvalid}
         setForceIsInvalid={setForceIsInvalid}
+        isFetching={isFetching}
       />
       <DataTable isFetching={isFetching} reports={reports} />
     </>
