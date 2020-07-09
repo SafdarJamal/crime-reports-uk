@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Pane,
-  Alert,
+  // Alert,
   Select,
   Paragraph,
   Button,
@@ -19,8 +19,8 @@ const Main = ({
   handleSearch,
   categoryIsInvalid,
   forceIsInvalid,
-  setCategoryIsInvalid,
-  setForceIsInvalid,
+  // setCategoryIsInvalid,
+  // setForceIsInvalid,
   isFetching
 }) => {
   const date = new Date();
@@ -52,7 +52,7 @@ const Main = ({
       border="default"
       borderRadius={8}
     >
-      <form>
+      <form onSubmit={handleSearch}>
         {/* {categoryIsInvalid && (
           <Alert
             intent="danger"
@@ -149,8 +149,7 @@ const Main = ({
           appearance="primary"
           iconBefore="search"
           height={majorScale(5)}
-          onClick={handleSearch}
-          disabled={isFetching}
+          isLoading={isFetching}
         >
           Search
         </Button>

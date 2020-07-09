@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import Loader from '../Loader';
 import Header from '../Header';
@@ -22,6 +22,8 @@ const App = () => {
   const [isFetching, setIsFetching] = useState(false);
   const [reports, setReports] = useState([]);
 
+  const bottomRef = useRef();
+
   useEffect(() => {
     Promise.all([getCategories(), getForces()])
       .then(([categoryOptions, forceOptions]) => {
@@ -32,7 +34,9 @@ const App = () => {
       .catch(error => console.log(error.message));
   }, []);
 
-  const handleSearch = () => {
+  const handleSearch = event => {
+    event.preventDefault();
+
     if (!category) return setCategoryIsInvalid(true);
     if (!force) return setForceIsInvalid(true);
 
@@ -44,8 +48,13 @@ const App = () => {
       getCrimeReports(category, force, year, month)
         .then(reports => setReports(reports))
         .then(() => setIsFetching(false))
+        .then(() => scrollBottom())
         .catch(error => console.log(error.message));
     }, 1000);
+  };
+
+  const scrollBottom = () => {
+    bottomRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   if (isLoading) return <Loader />;
@@ -67,7 +76,11 @@ const App = () => {
         setForceIsInvalid={setForceIsInvalid}
         isFetching={isFetching}
       />
-      <DataTable isFetching={isFetching} reports={reports} />
+      <DataTable
+        isFetching={isFetching}
+        reports={reports}
+        bottomRef={bottomRef}
+      />
     </>
   );
 };
