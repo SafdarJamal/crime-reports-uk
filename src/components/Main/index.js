@@ -44,12 +44,9 @@ const Main = ({
     <Pane
       elevation={1}
       marginTop={25}
-      width="100%"
       padding={25}
       background="tint2"
-      alignItems="center"
-      justifyContent="center"
-      border="default"
+      border={true}
       borderRadius={8}
     >
       <form onSubmit={handleSearch}>
@@ -74,6 +71,8 @@ const Main = ({
         )} */}
 
         <Select
+          autoFocus
+          required
           height={50}
           width="100%"
           marginBottom={25}
@@ -81,7 +80,6 @@ const Main = ({
           onChange={event => setCategory(event.target.value)}
           isInvalid={categoryIsInvalid}
           disabled={isFetching}
-          required
         >
           <option value="">Select Crime Category (Required)</option>
           {categoryOptions.map((item, i) => (
@@ -92,6 +90,7 @@ const Main = ({
         </Select>
 
         <Select
+          required
           height={50}
           width="100%"
           marginBottom={25}
@@ -99,7 +98,6 @@ const Main = ({
           onChange={event => setForce(event.target.value)}
           isInvalid={forceIsInvalid}
           disabled={isFetching}
-          required
         >
           <option value="">Select Police Force (Required)</option>
           {forceOptions.map((item, i) => (
@@ -149,9 +147,9 @@ const Main = ({
           appearance="primary"
           iconBefore="search"
           height={majorScale(5)}
-          isLoading={isFetching}
+          disabled={isFetching}
         >
-          Search
+          {isFetching ? 'Searching...' : 'Search'}
         </Button>
       </form>
     </Pane>

@@ -6,17 +6,16 @@ const Header = () => {
     <Pane
       elevation={1}
       display="flex"
-      padding={14}
-      marginTop={10}
-      background="overlay"
+      padding={12}
+      background="tint2"
+      border={true}
       borderRadius={8}
+      alignItems="center"
     >
-      <Pane flex={1} alignItems="center" display="flex">
-        <Avatar name="Crime Reports" size={40} marginRight={12} />
-        <Heading size={600} color="white">
-          Open Data about Crime and Policing in England
-        </Heading>
-      </Pane>
+      <Avatar name="Crime Reports" size={40} marginRight={12} />
+      <Heading size={600}>
+        Open Data about Crime and Policing in England
+      </Heading>
     </Pane>
   );
 };

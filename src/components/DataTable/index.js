@@ -43,11 +43,12 @@ const DataTable = ({ isFetching, reports, bottomRef }) => {
   return (
     <>
       <Table
-        onScroll={handleScroll}
         elevation={1}
         marginTop={25}
         marginBottom={25}
+        border={true}
         borderRadius={8}
+        onScroll={handleScroll}
       >
         <Dialog
           isShown={isDialogShown}
@@ -113,6 +114,7 @@ const DataTable = ({ isFetching, reports, bottomRef }) => {
           {isBottom && <Spinner size={50} marginX="auto" marginY={10} />}
         </Table.Body>
       </Table>
+
       <div ref={bottomRef}></div>
     </>
   );
