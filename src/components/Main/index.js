@@ -71,7 +71,6 @@ const Main = ({
         )} */}
 
         <Select
-          autoFocus
           required
           height={50}
           width="100%"
