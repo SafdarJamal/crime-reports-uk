@@ -25,6 +25,7 @@ const App = () => {
   const [forceIsInvalid, setForceIsInvalid] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
   const [reports, setReports] = useState([]);
+  const [error, setError] = useState(null);
 
   const bottomRef = useRef();
 
@@ -35,7 +36,10 @@ const App = () => {
         setForceOptions(forceOptions);
         setIsLoading(false);
       })
-      .catch(error => console.log(error.message));
+      .catch(error => {
+        setError(error);
+        setIsLoading(false);
+      });
   }, []);
 
   const handleSearch = event => {
@@ -53,7 +57,7 @@ const App = () => {
         .then(reports => setReports(reports))
         .then(() => setIsFetching(false))
         .then(() => scrollBottom())
-        .catch(error => console.log(error.message));
+        .catch(error => setError(error));
     }, 1000);
   };
 
@@ -62,6 +66,7 @@ const App = () => {
   };
 
   if (isLoading) return <Loader />;
+  if (error) return `An error has occurred: ${error.message}`;
 
   return (
     <>
