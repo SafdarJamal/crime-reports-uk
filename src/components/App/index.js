@@ -15,8 +15,12 @@ const App = () => {
   const [forceOptions, setForceOptions] = useState([]);
   const [category, setCategory] = useState('');
   const [force, setForce] = useState('');
-  const [year, setYear] = useState(date.getFullYear());
-  const [month, setMonth] = useState(date.getMonth() + 1);
+  const [year, setYear] = useState(
+    date.getMonth() === 0 ? date.getFullYear() - 1 : date.getFullYear()
+  );
+  const [month, setMonth] = useState(
+    date.getMonth() === 0 ? 12 : date.getMonth()
+  );
   const [categoryIsInvalid, setCategoryIsInvalid] = useState(false);
   const [forceIsInvalid, setForceIsInvalid] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
