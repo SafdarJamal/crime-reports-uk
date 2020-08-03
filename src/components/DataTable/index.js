@@ -104,10 +104,16 @@ const DataTable = ({ isFetching, reports, bottomRef }) => {
                 }}
               >
                 <Table.TextCell>{i + 1}</Table.TextCell>
-                <Table.TextCell>{report.persistent_id}</Table.TextCell>
+                <Table.TextCell>
+                  {report.persistent_id
+                    ? report.persistent_id
+                    : 'Not available'}
+                </Table.TextCell>
                 <Table.TextCell>{report.month}</Table.TextCell>
                 <Table.TextCell>
-                  {report.outcome_status.category}
+                  {report.outcome_status
+                    ? report.outcome_status.category
+                    : 'Not available'}
                 </Table.TextCell>
               </Table.Row>
             ))}
