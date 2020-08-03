@@ -1,6 +1,6 @@
 # Crime Reports UK
 
-[CR-UK](https://cr-uk.netlify.app) is the App for open-data about crime and policing in England, Wales, and Northern Ireland.
+[CR-UK](https://cr-uk.netlify.app) is the app for open-data about crime and policing in England, Wales, and Northern Ireland.
 
 ![Crime Reports UK](https://user-images.githubusercontent.com/48409548/89211076-b2593900-d5da-11ea-93ac-ec9d46984993.png)
 
