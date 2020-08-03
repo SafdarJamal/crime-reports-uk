@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Text, Spinner, Dialog } from 'evergreen-ui';
+import { Table, Text, Pane, Spinner, Dialog } from 'evergreen-ui';
 import { copyToClipboard } from 'copy-lite';
 
 const DataTable = ({ isFetching, reports, bottomRef }) => {
@@ -15,19 +15,13 @@ const DataTable = ({ isFetching, reports, bottomRef }) => {
     const bottom = scrollHeight - scrollTop === clientHeight;
 
     if (bottom) {
-      const reportsArr = [...reports];
+      const reportsClone = [...reports];
 
-      if (reportsArr.length > listNumber) {
-        if (!isBottom) {
-          setIsBottom(true);
-        }
+      if (reportsClone.length > listNumber) {
+        if (!isBottom) setIsBottom(true);
 
-        setTimeout(() => {
-          setListNumber(listNumber + 15);
-        }, 1000);
-      } else if (isBottom) {
-        setIsBottom(false);
-      }
+        setTimeout(() => setListNumber(listNumber + 15), 1000);
+      } else if (isBottom) setIsBottom(false);
     }
   };
 
@@ -36,9 +30,7 @@ const DataTable = ({ isFetching, reports, bottomRef }) => {
   if (reports) {
     controlledList = [...reports];
     controlledList.length = listNumber;
-  } else {
-    controlledList = null;
-  }
+  } else controlledList = null;
 
   return (
     <>
@@ -78,7 +70,16 @@ const DataTable = ({ isFetching, reports, bottomRef }) => {
         </Table.Head>
 
         <Table.Body height={475}>
-          {isFetching && <Spinner size={50} marginX="auto" marginY={10} />}
+          {isFetching && (
+            <Pane
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              height={400}
+            >
+              <Spinner size={50} marginX="auto" marginY={10} />
+            </Pane>
+          )}
 
           {!isFetching && controlledList && controlledList[0] === undefined && (
             <Table.Row>
