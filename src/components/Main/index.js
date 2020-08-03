@@ -10,8 +10,8 @@ import {
 } from 'evergreen-ui';
 
 const Main = ({
-  categoryOptions,
-  forceOptions,
+  categories,
+  forces,
   setCategory,
   setForce,
   setYear,
@@ -81,9 +81,9 @@ const Main = ({
           disabled={isFetching}
         >
           <option value="">Select Crime Category (Required)</option>
-          {categoryOptions.map((item, i) => (
-            <option key={i + 1} value={item.url}>
-              {item.name}
+          {categories.map((category, i) => (
+            <option key={i + 1} value={category.url}>
+              {category.name}
             </option>
           ))}
         </Select>
@@ -99,9 +99,9 @@ const Main = ({
           disabled={isFetching}
         >
           <option value="">Select Police Force (Required)</option>
-          {forceOptions.map((item, i) => (
-            <option key={i + 1} value={item.id}>
-              {item.name}
+          {forces.map((force, i) => (
+            <option key={i + 1} value={force.id}>
+              {force.name}
             </option>
           ))}
         </Select>
@@ -156,8 +156,8 @@ const Main = ({
 };
 
 Main.propTypes = {
-  categoryOptions: PropTypes.array.isRequired,
-  forceOptions: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
+  forces: PropTypes.array.isRequired,
   setCategory: PropTypes.func.isRequired,
   setForce: PropTypes.func.isRequired,
   setYear: PropTypes.func.isRequired,

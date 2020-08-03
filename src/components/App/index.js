@@ -11,8 +11,8 @@ const App = () => {
   const date = new Date();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [categoryOptions, setCategoryOptions] = useState([]);
-  const [forceOptions, setForceOptions] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [forces, setForces] = useState([]);
   const [category, setCategory] = useState('');
   const [force, setForce] = useState('');
   const [year, setYear] = useState(
@@ -31,9 +31,9 @@ const App = () => {
 
   useEffect(() => {
     Promise.all([getCategories(), getForces()])
-      .then(([categoryOptions, forceOptions]) => {
-        setCategoryOptions(categoryOptions);
-        setForceOptions(forceOptions);
+      .then(([categories, forces]) => {
+        setCategories(categories);
+        setForces(forces);
         setIsLoading(false);
       })
       .catch(error => {
@@ -72,8 +72,8 @@ const App = () => {
     <>
       <Header />
       <Main
-        categoryOptions={categoryOptions}
-        forceOptions={forceOptions}
+        categories={categories}
+        forces={forces}
         setCategory={setCategory}
         setForce={setForce}
         setYear={setYear}
