@@ -1,22 +1,25 @@
 import React from 'react';
 import { Pane, Avatar, Heading } from 'evergreen-ui';
+import logo from '../../images/logo.png';
 
 const Header = () => {
   return (
-    <Pane
-      elevation={1}
-      display="flex"
-      padding={12}
-      background="tint2"
-      border={true}
-      borderRadius={8}
-      alignItems="center"
-    >
-      <Avatar name="Crime Reports" size={40} marginRight={12} />
-      <Heading size={600}>
-        Open Data about Crime and Policing in England
-      </Heading>
-    </Pane>
+    <header>
+      <Pane
+        elevation={1}
+        display="flex"
+        padding={12}
+        background="tint2"
+        border={true}
+        borderRadius={8}
+        alignItems="center"
+      >
+        <Avatar name="Crime Reports UK" src={logo} size={40} marginRight={12} />
+        <Heading size={600}>
+          Open Data about Crime and Policing in the UK
+        </Heading>
+      </Pane>
+    </header>
   );
 };
 
