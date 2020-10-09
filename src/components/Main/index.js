@@ -6,6 +6,7 @@ import {
   Select,
   Paragraph,
   Button,
+  SearchIcon,
   majorScale
 } from 'evergreen-ui';
 
@@ -144,7 +145,7 @@ const Main = ({
 
         <Button
           appearance="primary"
-          iconBefore="search"
+          iconBefore={SearchIcon}
           height={majorScale(5)}
           disabled={isFetching}
         >
