@@ -13,10 +13,10 @@ import {
 const Main = ({
   categories,
   forces,
+  date,
   setCategory,
   setForce,
-  setYear,
-  setMonth,
+  setDate,
   handleSearch,
   categoryIsInvalid,
   forceIsInvalid,
@@ -24,8 +24,7 @@ const Main = ({
   // setForceIsInvalid,
   isFetching
 }) => {
-  const date = new Date();
-  const years = [2020, 2019, 2018, 2017];
+  const years = [2017, 2018, 2019, 2020];
   const months = [
     'January',
     'February',
@@ -40,6 +39,19 @@ const Main = ({
     'November',
     'December'
   ];
+
+  const dates = [];
+
+  for (let i = 0; i < years.length; i++) {
+    for (let j = years[i] === 2017 ? 8 : 0; j < months.length; j++) {
+      dates.unshift({
+        key: `${months[j]} ${years[i]}`,
+        value: `${years[i]}-${j + 1}`
+      });
+    }
+  }
+
+  dates.splice(0, 12 - (new Date().getMonth() + 1));
 
   return (
     <Pane
@@ -110,30 +122,14 @@ const Main = ({
         <Select
           height={50}
           width="100%"
-          marginBottom={25}
-          name="year"
-          onChange={event => setYear(event.target.value)}
+          name="date"
+          value={date}
+          onChange={event => setDate(event.target.value)}
           disabled={isFetching}
         >
-          <option value={date.getFullYear()}>Select Year (Optional)</option>
-          {years.map((year, i) => (
-            <option key={i + 1} value={year}>
-              {year}
-            </option>
-          ))}
-        </Select>
-
-        <Select
-          height={50}
-          width="100%"
-          name="month"
-          onChange={event => setMonth(event.target.value)}
-          disabled={isFetching}
-        >
-          <option value={date.getMonth() + 1}>Select Month (Optional)</option>
-          {months.map((months, i) => (
-            <option key={i + 1} value={i + 1}>
-              {months}
+          {dates.map((date, i) => (
+            <option key={i} value={date.value}>
+              {date.key}
             </option>
           ))}
         </Select>
@@ -159,10 +155,10 @@ const Main = ({
 Main.propTypes = {
   categories: PropTypes.array.isRequired,
   forces: PropTypes.array.isRequired,
+  date: PropTypes.string.isRequired,
   setCategory: PropTypes.func.isRequired,
   setForce: PropTypes.func.isRequired,
-  setYear: PropTypes.func.isRequired,
-  setMonth: PropTypes.func.isRequired,
+  setDate: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired,
   categoryIsInvalid: PropTypes.bool.isRequired,
   forceIsInvalid: PropTypes.bool.isRequired,

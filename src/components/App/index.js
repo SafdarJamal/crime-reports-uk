@@ -8,19 +8,16 @@ import DataTable from '../DataTable';
 import { getCategories, getForces, getCrimeReports } from '../../api';
 
 const App = () => {
-  const date = new Date();
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
 
   const [isLoading, setIsLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const [forces, setForces] = useState([]);
   const [category, setCategory] = useState('');
   const [force, setForce] = useState('');
-  const [year, setYear] = useState(
-    date.getMonth() === 0 ? date.getFullYear() - 1 : date.getFullYear()
-  );
-  const [month, setMonth] = useState(
-    date.getMonth() === 0 ? 12 : date.getMonth()
-  );
+  const [date, setDate] = useState(`${currentYear}-${currentMonth + 1}`);
   const [categoryIsInvalid, setCategoryIsInvalid] = useState(false);
   const [forceIsInvalid, setForceIsInvalid] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
@@ -53,7 +50,7 @@ const App = () => {
     setIsFetching(true);
 
     setTimeout(() => {
-      getCrimeReports(category, force, year, month)
+      getCrimeReports(category, force, date)
         .then(reports => setReports(reports))
         .then(() => setIsFetching(false))
         .then(() => scrollBottom())
@@ -74,10 +71,10 @@ const App = () => {
       <Main
         categories={categories}
         forces={forces}
+        date={date}
         setCategory={setCategory}
         setForce={setForce}
-        setYear={setYear}
-        setMonth={setMonth}
+        setDate={setDate}
         handleSearch={handleSearch}
         categoryIsInvalid={categoryIsInvalid}
         forceIsInvalid={forceIsInvalid}
