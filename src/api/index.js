@@ -16,10 +16,10 @@ const getForces = () =>
       .catch(error => reject(error));
   });
 
-const getCrimeReports = (category, force, year, month) =>
+const getCrimeReports = (category, force, date) =>
   new Promise((resolve, reject) => {
     fetch(
-      `${API_BASE}/crimes-no-location?category=${category}&force=${force}&date=${year}-${month}`
+      `${API_BASE}/crimes-no-location?category=${category}&force=${force}&date=${date}`
     )
       .then(response => response.json())
       .then(reports => resolve(reports))
