@@ -135,8 +135,7 @@ const Main = ({
         </Select>
 
         <Paragraph size={500} marginTop={10} marginBottom={25}>
-          Limit results to a specific month. The latest month will be shown by
-          default.
+          Limit results to a specific month.
         </Paragraph>
 
         <Button
