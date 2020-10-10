@@ -64,7 +64,8 @@ const DataTable = ({ isFetching, crimeReports, bottomRef }) => {
 
         <Table.Head>
           <Table.TextHeaderCell>NO.</Table.TextHeaderCell>
-          <Table.TextHeaderCell>ID</Table.TextHeaderCell>
+          <Table.TextHeaderCell>CATEGORY</Table.TextHeaderCell>
+          <Table.TextHeaderCell>PERSISTENT_ID</Table.TextHeaderCell>
           <Table.TextHeaderCell>DATE</Table.TextHeaderCell>
           <Table.TextHeaderCell>STATUS</Table.TextHeaderCell>
         </Table.Head>
@@ -104,6 +105,7 @@ const DataTable = ({ isFetching, crimeReports, bottomRef }) => {
                 }}
               >
                 <Table.TextCell>{i + 1}</Table.TextCell>
+                <Table.TextCell>{report.category}</Table.TextCell>
                 <Table.TextCell>
                   {report.persistent_id
                     ? report.persistent_id
