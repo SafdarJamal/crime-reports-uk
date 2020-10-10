@@ -21,7 +21,7 @@ const App = () => {
   const [categoryIsInvalid, setCategoryIsInvalid] = useState(false);
   const [forceIsInvalid, setForceIsInvalid] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
-  const [reports, setReports] = useState([]);
+  const [crimeReports, setCrimeReports] = useState([]);
   const [error, setError] = useState(null);
 
   const bottomRef = useRef();
@@ -51,7 +51,7 @@ const App = () => {
 
     setTimeout(() => {
       getCrimeReports(category, force, date)
-        .then(reports => setReports(reports))
+        .then(crimeReports => setCrimeReports(crimeReports))
         .then(() => setIsFetching(false))
         .then(() => scrollBottom())
         .catch(error => setError(error));
@@ -86,7 +86,7 @@ const App = () => {
       />
       <DataTable
         isFetching={isFetching}
-        reports={reports}
+        crimeReports={crimeReports}
         bottomRef={bottomRef}
       />
     </>
