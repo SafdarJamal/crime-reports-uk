@@ -71,6 +71,8 @@ const App = () => {
       <Main
         categories={categories}
         forces={forces}
+        category={category}
+        force={force}
         date={date}
         setCategory={setCategory}
         setForce={setForce}

@@ -13,6 +13,8 @@ import {
 const Main = ({
   categories,
   forces,
+  category,
+  force,
   date,
   setCategory,
   setForce,
@@ -89,6 +91,7 @@ const Main = ({
           width="100%"
           marginBottom={25}
           name="category"
+          value={category}
           onChange={event => setCategory(event.target.value)}
           isInvalid={categoryIsInvalid}
           disabled={isFetching}
@@ -107,6 +110,7 @@ const Main = ({
           width="100%"
           marginBottom={25}
           name="force"
+          value={force}
           onChange={event => setForce(event.target.value)}
           isInvalid={forceIsInvalid}
           disabled={isFetching}
@@ -154,6 +158,8 @@ const Main = ({
 Main.propTypes = {
   categories: PropTypes.array.isRequired,
   forces: PropTypes.array.isRequired,
+  category: PropTypes.string.isRequired,
+  force: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   setCategory: PropTypes.func.isRequired,
   setForce: PropTypes.func.isRequired,
