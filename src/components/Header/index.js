@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pane, Avatar, Heading } from 'evergreen-ui';
-import logo from '../../images/logo.png';
+import logo from '../../images/logo.svg';
 
 const Header = () => {
   return (
