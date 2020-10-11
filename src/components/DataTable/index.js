@@ -45,7 +45,7 @@ const DataTable = ({ isFetching, crimeReports, bottomRef }) => {
         <Dialog
           isShown={isDialogShown}
           hasHeader={false}
-          confirmLabel={isCopied ? 'Copied' : 'Copy'}
+          confirmLabel={isCopied ? 'Copied!' : 'Copy'}
           onConfirm={close => {
             copyToClipboard(controlledList[dialogID].persistent_id);
             setIsCopied(true);
