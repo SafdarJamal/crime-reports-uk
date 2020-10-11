@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import Loader from '../Loader';
-import Header from '../Header';
+import Layout from '../Layout';
 import Main from '../Main';
 import DataTable from '../DataTable';
 
@@ -29,10 +29,8 @@ const App = () => {
         setForces(forces);
         setIsLoading(false);
       })
-      .catch(error => {
-        setError(error);
-        setIsLoading(false);
-      });
+      .catch(error => setError(error))
+      .then(() => setIsLoading(false));
   }, []);
 
   const handleSearch = event => {
@@ -62,8 +60,7 @@ const App = () => {
   if (error) return `An error has occurred: ${error.message}`;
 
   return (
-    <>
-      <Header />
+    <Layout>
       <Main
         categories={categories}
         forces={forces}
@@ -85,7 +82,7 @@ const App = () => {
         crimeReports={crimeReports}
         bottomRef={bottomRef}
       />
-    </>
+    </Layout>
   );
 };
 
