@@ -98,7 +98,7 @@ const Main = ({
         >
           <option value="">Select Crime Category (Required)</option>
           {categories.map((category, i) => (
-            <option key={i + 1} value={category.url}>
+            <option key={i} value={category.url}>
               {category.name}
             </option>
           ))}
@@ -117,7 +117,7 @@ const Main = ({
         >
           <option value="">Select Police Force (Required)</option>
           {forces.map((force, i) => (
-            <option key={i + 1} value={force.id}>
+            <option key={i} value={force.id}>
               {force.name}
             </option>
           ))}
