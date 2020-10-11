@@ -8,16 +8,12 @@ import DataTable from '../DataTable';
 import { getCategories, getForces, getCrimeReports } from '../../api';
 
 const App = () => {
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-  const currentMonth = currentDate.getMonth();
-
   const [isLoading, setIsLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const [forces, setForces] = useState([]);
   const [category, setCategory] = useState('');
   const [force, setForce] = useState('');
-  const [date, setDate] = useState(`${currentYear}-${currentMonth + 1}`);
+  const [date, setDate] = useState(`2020-8`);
   const [categoryIsInvalid, setCategoryIsInvalid] = useState(false);
   const [forceIsInvalid, setForceIsInvalid] = useState(false);
   const [isFetching, setIsFetching] = useState(false);

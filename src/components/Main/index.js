@@ -53,7 +53,7 @@ const Main = ({
     }
   }
 
-  dates.splice(0, 12 - (new Date().getMonth() + 1));
+  dates.splice(0, 4);
 
   return (
     <Pane
