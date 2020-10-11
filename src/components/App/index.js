@@ -1,27 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import Loader from '../Loader';
-import Header from '../Header';
+import Layout from '../Layout';
 import Main from '../Main';
 import DataTable from '../DataTable';
 
 import { getCategories, getForces, getCrimeReports } from '../../api';
 
 const App = () => {
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-  const currentMonth = currentDate.getMonth();
-
   const [isLoading, setIsLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const [forces, setForces] = useState([]);
   const [category, setCategory] = useState('');
   const [force, setForce] = useState('');
-  const [date, setDate] = useState(`${currentYear}-${currentMonth + 1}`);
+  const [date, setDate] = useState(`2020-8`);
   const [categoryIsInvalid, setCategoryIsInvalid] = useState(false);
   const [forceIsInvalid, setForceIsInvalid] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
-  const [reports, setReports] = useState([]);
+  const [crimeReports, setCrimeReports] = useState([]);
   const [error, setError] = useState(null);
 
   const bottomRef = useRef();
@@ -33,10 +29,8 @@ const App = () => {
         setForces(forces);
         setIsLoading(false);
       })
-      .catch(error => {
-        setError(error);
-        setIsLoading(false);
-      });
+      .catch(error => setError(error))
+      .then(() => setIsLoading(false));
   }, []);
 
   const handleSearch = event => {
@@ -51,7 +45,7 @@ const App = () => {
 
     setTimeout(() => {
       getCrimeReports(category, force, date)
-        .then(reports => setReports(reports))
+        .then(crimeReports => setCrimeReports(crimeReports))
         .then(() => setIsFetching(false))
         .then(() => scrollBottom())
         .catch(error => setError(error));
@@ -66,11 +60,12 @@ const App = () => {
   if (error) return `An error has occurred: ${error.message}`;
 
   return (
-    <>
-      <Header />
+    <Layout>
       <Main
         categories={categories}
         forces={forces}
+        category={category}
+        force={force}
         date={date}
         setCategory={setCategory}
         setForce={setForce}
@@ -84,10 +79,10 @@ const App = () => {
       />
       <DataTable
         isFetching={isFetching}
-        reports={reports}
+        crimeReports={crimeReports}
         bottomRef={bottomRef}
       />
-    </>
+    </Layout>
   );
 };
 

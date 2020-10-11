@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Table, Text, Pane, Spinner, Dialog } from 'evergreen-ui';
 import { copyToClipboard } from 'copy-lite';
 
-const DataTable = ({ isFetching, reports, bottomRef }) => {
+const DataTable = ({ isFetching, crimeReports, bottomRef }) => {
   const [listNumber, setListNumber] = useState(15);
   const [isBottom, setIsBottom] = useState(false);
   const [isDialogShown, setIsDialogShown] = useState(false);
@@ -15,9 +15,9 @@ const DataTable = ({ isFetching, reports, bottomRef }) => {
     const bottom = scrollHeight - scrollTop === clientHeight;
 
     if (bottom) {
-      const reportsClone = [...reports];
+      const crimeReportsClone = [...crimeReports];
 
-      if (reportsClone.length > listNumber) {
+      if (crimeReportsClone.length > listNumber) {
         if (!isBottom) setIsBottom(true);
 
         setTimeout(() => setListNumber(listNumber + 15), 1000);
@@ -27,8 +27,8 @@ const DataTable = ({ isFetching, reports, bottomRef }) => {
 
   let controlledList;
 
-  if (reports) {
-    controlledList = [...reports];
+  if (crimeReports) {
+    controlledList = [...crimeReports];
     controlledList.length = listNumber;
   } else controlledList = null;
 
@@ -45,7 +45,7 @@ const DataTable = ({ isFetching, reports, bottomRef }) => {
         <Dialog
           isShown={isDialogShown}
           hasHeader={false}
-          confirmLabel={isCopied ? 'Copied' : 'Copy'}
+          confirmLabel={isCopied ? 'Copied!' : 'Copy'}
           onConfirm={close => {
             copyToClipboard(controlledList[dialogID].persistent_id);
             setIsCopied(true);
@@ -64,7 +64,8 @@ const DataTable = ({ isFetching, reports, bottomRef }) => {
 
         <Table.Head>
           <Table.TextHeaderCell>NO.</Table.TextHeaderCell>
-          <Table.TextHeaderCell>ID</Table.TextHeaderCell>
+          <Table.TextHeaderCell>CATEGORY</Table.TextHeaderCell>
+          <Table.TextHeaderCell>PERSISTENT_ID</Table.TextHeaderCell>
           <Table.TextHeaderCell>DATE</Table.TextHeaderCell>
           <Table.TextHeaderCell>STATUS</Table.TextHeaderCell>
         </Table.Head>
@@ -104,6 +105,7 @@ const DataTable = ({ isFetching, reports, bottomRef }) => {
                 }}
               >
                 <Table.TextCell>{i + 1}</Table.TextCell>
+                <Table.TextCell>{report.category}</Table.TextCell>
                 <Table.TextCell>
                   {report.persistent_id
                     ? report.persistent_id
@@ -129,7 +131,7 @@ const DataTable = ({ isFetching, reports, bottomRef }) => {
 
 DataTable.propTypes = {
   isFetching: PropTypes.bool.isRequired,
-  reports: PropTypes.array.isRequired,
+  crimeReports: PropTypes.array.isRequired,
   bottomRef: PropTypes.object.isRequired
 };
 

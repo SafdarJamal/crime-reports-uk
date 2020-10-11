@@ -1,29 +1,32 @@
 const API_BASE = 'https://data.police.uk/api';
 
-const getCategories = () =>
-  new Promise((resolve, reject) => {
+const getCategories = () => {
+  return new Promise((resolve, reject) => {
     fetch(`${API_BASE}/crime-categories`)
       .then(response => response.json())
-      .then(categories => resolve(categories))
+      .then(data => resolve(data))
       .catch(error => reject(error));
   });
+};
 
-const getForces = () =>
-  new Promise((resolve, reject) => {
+const getForces = () => {
+  return new Promise((resolve, reject) => {
     fetch(`${API_BASE}/forces`)
       .then(response => response.json())
-      .then(forces => resolve(forces))
+      .then(data => resolve(data))
       .catch(error => reject(error));
   });
+};
 
-const getCrimeReports = (category, force, date) =>
-  new Promise((resolve, reject) => {
+const getCrimeReports = (category, force, date) => {
+  return new Promise((resolve, reject) => {
     fetch(
       `${API_BASE}/crimes-no-location?category=${category}&force=${force}&date=${date}`
     )
       .then(response => response.json())
-      .then(reports => resolve(reports))
+      .then(data => resolve(data))
       .catch(error => reject(error));
   });
+};
 
 export { getCategories, getForces, getCrimeReports };
