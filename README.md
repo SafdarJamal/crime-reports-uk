@@ -6,7 +6,7 @@
 
 Crime Reports UK is the app for open-data about crime and policing in England, Wales, and Northern Ireland.
 
-![Crime Reports UK in Action](https://user-images.githubusercontent.com/48409548/89211076-b2593900-d5da-11ea-93ac-ec9d46984993.png)
+![Crime Reports UK in Action](https://user-images.githubusercontent.com/48409548/95696296-fb211400-0c53-11eb-9b6b-74ce4ab6dbc4.png)
 
 ## Built Using
 
