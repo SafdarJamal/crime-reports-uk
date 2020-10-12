@@ -1,4 +1,4 @@
-# Crime Reports UK
+# [Crime Reports UK](https://cr-uk.netlify.app)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/744466fe-a9ac-4b36-a2f6-be5509cb0ff4/deploy-status)](https://app.netlify.com/sites/cr-uk/deploys)
 [![GitHub Release (latest by date)](https://img.shields.io/github/v/release/SafdarJamal/crime-reports-uk)](https://github.com/SafdarJamal/crime-reports-uk/releases)
@@ -6,7 +6,14 @@
 
 Crime Reports UK is the app for open-data about crime and policing in England, Wales, and Northern Ireland.
 
-![Crime Reports UK](https://user-images.githubusercontent.com/48409548/89211076-b2593900-d5da-11ea-93ac-ec9d46984993.png)
+![Crime Reports UK in Action](https://user-images.githubusercontent.com/48409548/89211076-b2593900-d5da-11ea-93ac-ec9d46984993.png)
+
+## Built Using
+
+- [React](http://reactjs.org)
+- [Evergreen UI](https://evergreen.segment.com)
+- [UK Police API](https://data.police.uk/docs/)
+- [Netlify](https://www.netlify.com)
 
 ## Development
 
@@ -23,11 +30,13 @@ Install dependencies:
 npm install
 ```
 
-Finally, you need to start a local web server. Run:
+Now, you can start a local web server by running:
 
 ```
 npm start
 ```
+
+And then open http://localhost:3000 to view it in the browser.
 
 #### npm scripts
 
