@@ -16,7 +16,7 @@ const Header = () => {
       >
         <Avatar name="Crime Reports UK" src={logo} size={40} marginRight={12} />
         <Heading size={600}>
-          Open Data about Crime and Policing in the UK
+          Browse Open Data about Crime and Policing in the UK
         </Heading>
       </Pane>
     </header>

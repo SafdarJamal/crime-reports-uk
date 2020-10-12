@@ -4,7 +4,7 @@
 [![GitHub Release (latest by date)](https://img.shields.io/github/v/release/SafdarJamal/crime-reports-uk)](https://github.com/SafdarJamal/crime-reports-uk/releases)
 [![License](https://img.shields.io/github/license/SafdarJamal/crime-reports-uk)](https://github.com/SafdarJamal/crime-reports-uk/blob/master/LICENSE)
 
-[CR-UK](https://cr-uk.netlify.app) is the app for open-data about crime and policing in England, Wales, and Northern Ireland.
+Crime Reports UK is the app for open-data about crime and policing in England, Wales, and Northern Ireland.
 
 ![Crime Reports UK](https://user-images.githubusercontent.com/48409548/89211076-b2593900-d5da-11ea-93ac-ec9d46984993.png)
 
