@@ -47,6 +47,10 @@ And then open http://localhost:3000 to view it in the browser.
 | npm run build | Builds the app for production to the `build` folder.                    |
 | npm run eject | This command will remove the single build dependency from your project. |
 
+## Credits
+
+Crime Reports UK is built and maintained by [Safdar Jamal](https://safdarjamal.github.io).
+
 ## License
 
 Crime Reports UK is open-source software [licensed as MIT](https://github.com/SafdarJamal/crime-reports-uk/blob/master/LICENSE).
