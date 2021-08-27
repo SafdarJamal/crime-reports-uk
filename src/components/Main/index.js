@@ -7,7 +7,7 @@ import {
   Paragraph,
   Button,
   SearchIcon,
-  majorScale
+  majorScale,
 } from 'evergreen-ui';
 
 const Main = ({
@@ -24,7 +24,7 @@ const Main = ({
   forceIsInvalid,
   // setCategoryIsInvalid,
   // setForceIsInvalid,
-  isFetching
+  isFetching,
 }) => {
   const years = [2017, 2018, 2019, 2020];
   const months = [
@@ -39,7 +39,7 @@ const Main = ({
     'September',
     'October',
     'November',
-    'December'
+    'December',
   ];
 
   const dates = [];
@@ -48,7 +48,7 @@ const Main = ({
     for (let j = years[i] === 2017 ? 8 : 0; j < months.length; j++) {
       dates.unshift({
         key: `${months[j]} ${years[i]}`,
-        value: `${years[i]}-${j + 1}`
+        value: `${years[i]}-${j + 1}`,
       });
     }
   }
@@ -169,7 +169,7 @@ Main.propTypes = {
   forceIsInvalid: PropTypes.bool.isRequired,
   setCategoryIsInvalid: PropTypes.func.isRequired,
   setForceIsInvalid: PropTypes.func.isRequired,
-  isFetching: PropTypes.bool.isRequired
+  isFetching: PropTypes.bool.isRequired,
 };
 
 export default Main;
