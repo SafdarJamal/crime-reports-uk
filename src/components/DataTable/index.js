@@ -132,7 +132,7 @@ const DataTable = ({ isFetching, crimeReports, bottomRef }) => {
 DataTable.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   crimeReports: PropTypes.array.isRequired,
-  bottomRef: PropTypes.object.isRequired
+  bottomRef: PropTypes.object.isRequired,
 };
 
 export default DataTable;
