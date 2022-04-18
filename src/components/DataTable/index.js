@@ -40,7 +40,7 @@ const DataTable = ({ isFetching, crimeReports, bottomRef }) => {
         marginBottom={25}
         border={true}
         borderRadius={8}
-        onScroll={handleScroll}
+        onScrollCapture={handleScroll}
       >
         <Dialog
           isShown={isDialogShown}
