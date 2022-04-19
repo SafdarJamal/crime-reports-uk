@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Pane,
-  // Alert,
   Select,
   Paragraph,
   Button,
@@ -22,8 +21,6 @@ const Main = ({
   handleSearch,
   categoryIsInvalid,
   forceIsInvalid,
-  // setCategoryIsInvalid,
-  // setForceIsInvalid,
   isFetching,
 }) => {
   const years = [2017, 2018, 2019, 2020];
@@ -65,26 +62,6 @@ const Main = ({
       borderRadius={8}
     >
       <form onSubmit={handleSearch}>
-        {/* {categoryIsInvalid && (
-          <Alert
-            intent="danger"
-            title="Please select crime category!"
-            marginBottom={25}
-            isRemoveable={true}
-            onRemove={() => setCategoryIsInvalid(false)}
-          />
-        )}
-
-        {forceIsInvalid && (
-          <Alert
-            intent="danger"
-            title="Please select police force!"
-            marginBottom={25}
-            isRemoveable={true}
-            onRemove={() => setForceIsInvalid(false)}
-          />
-        )} */}
-
         <Select
           required
           height={50}
