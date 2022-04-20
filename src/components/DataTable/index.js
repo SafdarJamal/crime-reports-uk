@@ -40,7 +40,7 @@ const DataTable = ({ isFetching, crimeReports, bottomRef }) => {
         marginBottom={25}
         border={true}
         borderRadius={8}
-        onScroll={handleScroll}
+        onScrollCapture={handleScroll}
       >
         <Dialog
           isShown={isDialogShown}
@@ -132,7 +132,7 @@ const DataTable = ({ isFetching, crimeReports, bottomRef }) => {
 DataTable.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   crimeReports: PropTypes.array.isRequired,
-  bottomRef: PropTypes.object.isRequired
+  bottomRef: PropTypes.object.isRequired,
 };
 
 export default DataTable;
