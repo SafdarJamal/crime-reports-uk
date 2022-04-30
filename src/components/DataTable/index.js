@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Text, Pane, Spinner, Dialog } from 'evergreen-ui';
+import { Table, Heading, Text, Pane, Spinner, Dialog } from 'evergreen-ui';
 import { copyToClipboard } from 'copy-lite';
 
 const DataTable = ({ isFetching, crimeReports, bottomRef }) => {
@@ -55,11 +55,8 @@ const DataTable = ({ isFetching, crimeReports, bottomRef }) => {
             setIsCopied(false);
           }}
         >
-          <Text>
-            <b>CRIME_ID:</b>
-            <br />
-            {isDialogShown && controlledList[dialogID].persistent_id}
-          </Text>
+          <Heading>CRIME_ID:</Heading>
+          <Text>{isDialogShown && controlledList[dialogID].persistent_id}</Text>
         </Dialog>
 
         <Table.Head>
