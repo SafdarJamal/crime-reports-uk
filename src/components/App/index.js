@@ -13,7 +13,7 @@ const App = () => {
   const [forces, setForces] = useState([]);
   const [category, setCategory] = useState('');
   const [force, setForce] = useState('');
-  const [date, setDate] = useState(`2020-8`);
+  const [date, setDate] = useState(`2022-3`);
   const [categoryIsInvalid, setCategoryIsInvalid] = useState(false);
   const [forceIsInvalid, setForceIsInvalid] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
