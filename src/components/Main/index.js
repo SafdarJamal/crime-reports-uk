@@ -23,7 +23,7 @@ const Main = ({
   forceIsInvalid,
   isFetching,
 }) => {
-  const years = [2017, 2018, 2019, 2020];
+  const years = [2017, 2018, 2019, 2020, 2021, 2022];
   const months = [
     'January',
     'February',
@@ -50,7 +50,7 @@ const Main = ({
     }
   }
 
-  dates.splice(0, 4);
+  dates.splice(0, 9);
 
   return (
     <Pane
