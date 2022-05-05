@@ -67,7 +67,7 @@ const DataTable = ({ isFetching, crimeReports, bottomRef }) => {
           <Table.TextHeaderCell>STATUS</Table.TextHeaderCell>
         </Table.Head>
 
-        <Table.Body height={475}>
+        <Table.Body height={450}>
           {isFetching && (
             <Pane
               display="flex"
