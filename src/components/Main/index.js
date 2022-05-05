@@ -1,13 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Pane,
-  Select,
-  Paragraph,
-  Button,
-  SearchIcon,
-  majorScale,
-} from 'evergreen-ui';
+import { Pane, Select, Paragraph, Button, SearchIcon } from 'evergreen-ui';
 
 const Main = ({
   categories,
@@ -122,7 +115,7 @@ const Main = ({
         <Button
           appearance="primary"
           iconBefore={SearchIcon}
-          height={majorScale(5)}
+          size="large"
           disabled={isFetching}
         >
           {isFetching ? 'Searching...' : 'Search'}
