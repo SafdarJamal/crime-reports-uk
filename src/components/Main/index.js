@@ -43,7 +43,7 @@ const Main = ({
     }
   }
 
-  dates.splice(0, 9);
+  dates.splice(0, 3);
 
   return (
     <Pane
