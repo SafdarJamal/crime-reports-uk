@@ -4,7 +4,7 @@
 [![GitHub Release (latest by date)](https://img.shields.io/github/v/release/SafdarJamal/crime-reports-uk)](https://github.com/SafdarJamal/crime-reports-uk/releases)
 [![License](https://img.shields.io/github/license/SafdarJamal/crime-reports-uk)](https://github.com/SafdarJamal/crime-reports-uk/blob/master/LICENSE)
 
-Crime Reports UK is the app for open-data about crime and policing in England, Wales, and Northern Ireland.
+Crime Reports UK is the app for open data about crime and policing in England, Wales, and Northern Ireland.
 
 ![Crime Reports UK in Action](https://user-images.githubusercontent.com/48409548/166941658-26a220df-b26d-4407-889c-deb8ca11cffe.png)
 
