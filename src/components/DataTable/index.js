@@ -83,7 +83,7 @@ const DataTable = ({ isFetching, crimeReports, bottomRef }) => {
             <Table.Row>
               <Table.TextCell>
                 <Text size={600} marginLeft={10}>
-                  There is no reports available.
+                  There are no reports available.
                 </Text>
               </Table.TextCell>
             </Table.Row>
